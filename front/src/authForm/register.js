@@ -17,10 +17,10 @@ class Register extends Component {
             verify_password:''
         }
     }
-    handleClick(event){
+    handleClick(event) {
         var apiBaseUrl = "http://localhost:5000/api/";
 
-    console.log("values", this.state.name, this.state.surname, this.state.email, this.state.password, this.name.verify_password);
+        console.log("values", this.state.name, this.state.surname, this.state.email, this.state.password, this.name.verify_password);
         var self = this;
         var payload={
             "name": this.state.name,
@@ -29,24 +29,25 @@ class Register extends Component {
             "password": this.state.password,
             "verify_password": this.state.verify_password
         }
-        axios.post(apiBaseUrl+'/register', payload).then(function(response) {
-            console.log(response);
-            if(response.data.code == 200){
-            //console.log("registration successfull");
-            let loginScreen = [];
-            loginScreen.push(<Login parentContext={this}/>);
-            let loginMessage = "Pas encore enregistré ? Allez donc à l'enregistrement";
-            self.props.parentContext.setState({
-                loginScreen:loginScreen,
-                loginMessage:loginMessage,
-                buttonLabel:"Register",
-                isLogin: true
+        axios.post(apiBaseUrl+'/register', payload)
+            .then(function(response) {
+                console.log(response);
+                if(response.data.code == 200){
+                //console.log("registration successfull");
+                let loginScreen = [];
+                loginScreen.push(<Login parentContext={this}/>);
+                let loginMessage = "Pas encore enregistré ? Allez donc à l'enregistrement";
+                self.props.parentContext.setState({
+                    loginScreen:loginScreen,
+                    loginMessage:loginMessage,
+                    buttonLabel:"Register",
+                    isLogin: true
+                });
+                }
+            })
+            .catch(function(error) {
+                console.log(error);
             });
-            }
-        })
-        .catch(function(error) {
-            console.log(error);
-        });
     }
 
 
