@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/muiThemeable';
 import AppBar from 'material-ui/AppBar';
-import RaisedButton from 'material-ui/RaisedButton';
+import { Button } from 'mdbreact';
 import TextField from 'material-ui/TextField';
 import axios from 'axios';
 import ProjectPage from '../projectPage';
@@ -26,12 +26,12 @@ class Login extends Component {
         axios.post(apiBaseUrl+'login', payload)
             .then(function (response) {
                 console.log(response);
-                if (response.data.code == 200){
+                if (response.data.code === 200){
                     console.log("Login successful");
                     let projectPage=[];
                     projectPage.push(<ProjectPage appContext={self.props.appContext}/>);
                     self.props.setState({loginPage:[], projectPage:projectPage})
-                } else if (response.data.code == 204) {
+                } else if (response.data.code === 204) {
                     console.log("Email password do not match");
                     alert("email password do not match")
                 } else {
@@ -65,9 +65,14 @@ class Login extends Component {
                             onChange={(event, newValue) => this.setState({password:newValue})}
                         />
                         <br/>
-                        <RaisedButton
-                            label="Submit" primary={true} style={style} onClick={(event) => this.handleClick(event)}
-                        />
+                        <Button
+                            color="elegant"
+                            size="md"
+                            label="Submit"
+                            primary={true}
+                            style={style}
+                            onClick={(event) => this.handleClick(event)}
+                        >Submit</Button>
                     </div>
                 </MuiThemeProvider>
             </div>

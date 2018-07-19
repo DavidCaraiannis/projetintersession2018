@@ -1,7 +1,7 @@
 import React, { Component }from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
-import RaisedButtonfrom from 'material-ui/RaisedButton';
+import { Button } from 'mdbreact';
 import TextField from 'material-ui/TextField';
 import axios from 'axios';
 import Login from './Login';
@@ -17,26 +17,27 @@ class Register extends Component {
             verify_password:''
         }
     }
+
     handleClick(event) {
-        var apiBaseUrl = "http://localhost:5000/api/";
+        const apiBaseUrl = "http://localhost:5000/api/";
 
         console.log("values", this.state.name, this.state.surname, this.state.email, this.state.password, this.name.verify_password);
-        var self = this;
-        var payload={
+        let self = this;
+        let payload={
             "name": this.state.name,
             "surname": this.state.surname,
             "email": this.state.email,
             "password": this.state.password,
             "verify_password": this.state.verify_password
-        }
-        axios.post(apiBaseUrl+'/register', payload)
+        };
+        axios.post(apiBaseUrl+'/Register', payload)
             .then(function(response) {
                 console.log(response);
-                if(response.data.code == 200){
+                if(response.data.code === 200){
                 //console.log("registration successfull");
                 let loginScreen = [];
                 loginScreen.push(<Login parentContext={this}/>);
-                let loginMessage = "Pas encore enregistré ? Allez donc à l'enregistrement";
+                let loginMessage = "Not registered yet ? Go to register";
                 self.props.parentContext.setState({
                     loginScreen:loginScreen,
                     loginMessage:loginMessage,
@@ -60,45 +61,55 @@ class Register extends Component {
                             title="Register"
                         />
                         <TextField
-                            hintText="Entrez votre Prénom"
-                            floatingLabelText="Prénom"
+                            hintText="Enter your name"
+                            floatingLabelText="Name"
                             onChange={(event,newValue) => this.setState({name:newValue})}
                         />
                         <br/>
                         <TextField
-                            hindText="Entrez votre Nom"
-                            floatingLabelText="Nom"
+                            hintText="Enter your surname"
+                            floatingLabelText="Surname"
                             onChange={(event,newValue) => this.setState({surname:newValue})}
                         />
                         <br/>
                         <TextField
-                            hindText="Entrez votre email"
+                            hintText="Enter your email"
                             floatingLabelText="Email"
                             onChange={(event,newValue) => this.setState({email:newValue})}
                         />
                         <br/>
                         <TextField
-                            type="password"
-                            hindText="Entrez votre mot de passe"
+                            type="Password"
+                            hintText="Enter your password"
                             floatingLabelText="password"
-                            onChange={(event,newvalue) => this.setState({password:newValue})}
+                            onChange={(event,newValue) => this.setState({password:newValue})}
                         />
+                        <br/>
                         <TextField
-                            type="password"
-                            hindText="Entre une nouvelle fois votre mot de passe"
-                            floatingLabelText="password"
+                            type="Password"
+                            hintText="Enter your password again"
+                            floatingLabelText="Confirm Your Password"
                             onChange={(event,newValue) => this.setState({verify_password:newValue})}
                         />
-                        <RaisedButton label="Submit" primary={true} tyle={tyle} onclick{(event) => his.handleClick(event)}/>
+                        <br/>
+                        <Button
+                            color="elegant"
+                            size="md"
+                            label="Submit"
+                            primary={true}
+                            style={style}
+                            onClick={(event) => this.handleClick(event)}
+                        >Submit</Button>
                     </div>
                 </MuiThemeProvider>
             </div>
         );
     }
-
-    const style ={
-        margin: 15,
-    };
-
-    export default Register;
 }
+
+const style ={
+    margin: 15,
+    borderRadius: 15
+};
+
+export default Register;
