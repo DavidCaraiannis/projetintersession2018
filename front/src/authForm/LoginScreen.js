@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import { Button } from 'mdbreact';
+import { Button, Modal } from 'mdbreact';
 
 import Logo from './Nick-logo.svg';
 
@@ -16,8 +15,16 @@ class LoginScreen extends Component {
             loginScreen:[],
             loginMessage:'',
             buttonLabel:'Register',
-            isLogin: true
+            isLogin: true,
+            modal: false
         }
+        this.toggle = this.toggle.bind(this);
+    }
+
+    toggle() {
+        this.setState({
+            modal: !this.state.modal
+        });
     }
 
     componentWillMount() {
@@ -70,8 +77,9 @@ class LoginScreen extends Component {
                                 label="Register"
                                 primary={true}
                                 style={style}
-                                onClick={(event) => this.handleClick(event)}
+                                onClick={(event) =>this.handleClick(event)}
                             >Register</Button>
+                            <Modal isOpen={this.state.modal} toggle={this.toggle}></Modal>
                             <Button
                                 color="elegant"
                                 size="sm"
@@ -80,6 +88,7 @@ class LoginScreen extends Component {
                                 style={style}
                                 onClick={(event) => this.handleClick(event)}
                             >Login</Button>
+                            <Modal isOpen={this.state.modal} toggle={this.toggle}></Modal>
                         </div>
                 </div>
             </div>
@@ -89,6 +98,7 @@ class LoginScreen extends Component {
 
 const style = {
     margin: 15,
+    'border-radius':'5px'
 };
 
 export default LoginScreen;

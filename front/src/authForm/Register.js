@@ -1,8 +1,5 @@
 import React, { Component }from 'react';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import AppBar from 'material-ui/AppBar';
 import { Button, Input, Container, Modal, Card, CardBody, CardTitle, CardText } from 'mdbreact';
-import TextField from 'material-ui/TextField';
 import axios from 'axios';
 import Login from './Login';
 
@@ -21,7 +18,7 @@ class Register extends Component {
     handleClick(event) {
         const apiBaseUrl = "http://localhost:5000/api/";
 
-        console.log("values", this.state.name, this.state.surname, this.state.email, this.state.password, this.name.verify_password);
+        console.log("values", this.state.name, this.state.surname, this.state.email, this.state.password, this.state.verify_password);
         let self = this;
         let payload={
             "name": this.state.name,
@@ -54,39 +51,40 @@ class Register extends Component {
 
     render() {
         return (
-            <Card class="cardRegister">
+            <Card className="cardRegister">
                 <CardBody>
                     <CardTitle> Register </CardTitle>
                     <CardText>
-                        <div class="cardLoginScreen">
+                        <div className="cardLoginScreen">
                             <Input
                                 label="Name"
-                                containerClass="active-cyan-2 mt-5 mb-3"
+                                containerClass="active-cyan-2 mt-0 mb-0"
                                 onChange={(event,newValue) => this.setState({name:newValue})}
                             />
                             <br/>
                             <Input
                                 label="Surname"
-                                containerClass="active-cyan-2 mt-0 mb-3"
+                                containerClass="active-cyan-2 mt-0 mb-0"
                                 onChange={(event,newValue) => this.setState({surname:newValue})}
                             />
                             <br/>
                             <Input
                                 label="Email"
-                                containerClass="active-cyan-2 mt-0 mb-3"
+                                containerClass="active-cyan-2 mt-0 mb-0"
                                 onChange={(event,newValue) => this.setState({email:newValue})}
                             />
                             <br/>
                             <Input
                                 type="Password"
                                 label="Password"
-                                containerClass="active-cyan-2 mt-0 mb-3"
+                                containerClass="active-cyan-2 mt-0 mb-0"
                                 onChange={(event,newValue) => this.setState({password:newValue})}
                             />
                             <br/>
                             <Input
+                                type="Password"
                                 label="Confirm Your Password"
-                                containerClass="active-cyan-2 mt-0 mb-3"
+                                containerClass="active-cyan-2 mt-0 mb-0"
                                 onChange={(event,newValue) => this.setState({verify_password:newValue})}
                             />
                             <br/>

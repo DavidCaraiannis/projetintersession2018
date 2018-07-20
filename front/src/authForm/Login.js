@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/muiThemeable';
-import AppBar from 'material-ui/AppBar';
 import { Button } from 'mdbreact';
 import TextField from 'material-ui/TextField';
 import axios from 'axios';
@@ -49,9 +48,6 @@ class Login extends Component {
             <div>
                 <MuiThemeProvider>
                     <div>
-                        <AppBar
-                            title="Login"
-                        />
                         <TextField
                             hintText="Enter Your Email"
                             floatingLabelText="Email"
