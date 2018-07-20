@@ -1,34 +1,40 @@
 import React, { Component } from 'react';
-import injectTapEventPlugin from 'react-tap-event-plugin';
+import { connect } from 'react-redux';
+import Navigation from './common/navigation';
+import Footer from './common/mainFooter';
+//import injectTapEventPlugin from 'react-tap-event-plugin';
 //import logo from './logo.svg';
 import './App.css';
-import LoginScreen from './authForm/LoginScreen';
 
-injectTapEventPlugin();
+//injectTapEventPlugin();
 
 class App extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {
+        /*this.state = {
             loginPage:[],
             projectPage: []
-        }
+        };*/
     }
 
-    componentWillMount(){
+    /*componentWillMount(){
         let loginPage = [];
         loginPage.push(<LoginScreen parentContext={this}/>);
         this.setState({
             loginPage:loginPage
         })
-    }
+    }*/
 
     render() {
         return (
             <div className="App">
-                {this.state.loginPage}
-                {this.state.projectPage}
+                <Navigation/>
+                <main className="fadeIn animated">
+                    {this.props.children}
+                </main>*/
+                {/*{this.state.loginPage}
+                {this.state.projectPage}*/}
             </div>
         );
     }
@@ -38,4 +44,12 @@ const style = {
     margin: 5,
 };
 
-export default App;
+//export default App;
+
+const mapStateToProps = (state) => {
+    return {
+        isAuthenticated: state.Auth.isAuthenticated
+    }
+};
+
+export default connect(mapStateToProps)(App);

@@ -7,10 +7,20 @@
     "axios": "^0.18.0",
     "jquery": "^3.3.1",
     "mdbreact": "^4.6.0",
+    "prop-types": "^15.6.2",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
+    "react-redux": "^5.0.7",
+    "react-router": "^4.3.1",
+    "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.4",
-    "react-tap-event-plugin": "^3.0.3"
+    "react-tap-event-plugin": "^3.0.3",
+    "redux": "^4.0.0",
+    "redux-logger": "^3.0.6",
+    "redux-persist": "^5.10.0",
+    "redux-thunk": "^2.3.0",
+    "ree-validate": "^3.0.2",
+    "semantic-ui-react": "^0.82.0"
   },
   "main": "src/electron-starter.js",
   "homepage": "./",
@@ -23,7 +33,11 @@
     "dev": "nf start"
   },
   "devDependencies": {
+    "babel-preset-react": "^6.24.1",
+    "cross-env": "^5.2.0",
     "electron": "^2.0.5",
-    "foreman": "^3.0.1"
+    "foreman": "^3.0.1",
+    "laravel-mix": "^2.1.11",
+    "lodash": "^4.17.10"
   }
 }

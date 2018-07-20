@@ -1,11 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+//import { render } from 'react-dom';
+import { Provider } from 'react-redux';
 import './index.css';
 import 'font-awesome/css/font-awesome.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'mdbreact/dist/css/mdb.css';
-import App from './App';
+import Main from './Main';
+import store from './store';
+import Routes from './routes';
+import * as action from './store/actions';
+//import LoginScreen from './pages/authForm/LoginScreen';
 import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+store.dispatch(action.authCheck());
+
+ReactDOM.render(
+    <Provider store={store}>
+        <Main/>
+    </Provider>,
+    document.getElementById('root')
+);
 registerServiceWorker();
