@@ -35,7 +35,7 @@ class App extends Component {
 }
 
 const style = {
-    margin: 15,
+    margin: 5,
 };
 
 export default App;

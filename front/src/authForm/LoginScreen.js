@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { Button } from 'mdbreact';
 
+import Logo from './Nick-logo.svg';
+
 import Login from './Login';
 import Register from './Register';
 
@@ -34,7 +36,7 @@ class LoginScreen extends Component {
         if (this.state.isLogin) {
             let loginScreen = [];
             loginScreen.push(<Register parentContext={this}/>);
-            loginMessage = "Already registered. Go to Login";
+            loginMessage = "Already registered. Go to";
             this.setState({
                 loginScreen:loginScreen,
                 loginMessage: loginMessage,
@@ -55,26 +57,33 @@ class LoginScreen extends Component {
     }
 
     render() {
-        return (
+        return [
             <div className="loginscreen">
+                <img id="logo" alt="logo" src={Logo}></img>
                 {this.state.loginScreen}
                 <div>
                     {this.state.loginMessage}
-                    <MuiThemeProvider>
                         <div>
                             <Button
                                 color="elegant"
-                                size="md"
-                                label={this.state.buttonLabel}
+                                size="sm"
+                                label="Register"
                                 primary={true}
                                 style={style}
                                 onClick={(event) => this.handleClick(event)}
-                            >{this.state.buttonLabel}</Button>
+                            >Register</Button>
+                            <Button
+                                color="elegant"
+                                size="sm"
+                                label="login"
+                                primary={true}
+                                style={style}
+                                onClick={(event) => this.handleClick(event)}
+                            >Login</Button>
                         </div>
-                    </MuiThemeProvider>
                 </div>
             </div>
-        );
+        ];
     }
 }
 

@@ -1,7 +1,7 @@
 import React, { Component }from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
-import { Button } from 'mdbreact';
+import { Button, Input, Container, Modal, Card, CardBody, CardTitle, CardText } from 'mdbreact';
 import TextField from 'material-ui/TextField';
 import axios from 'axios';
 import Login from './Login';
@@ -54,62 +54,62 @@ class Register extends Component {
 
     render() {
         return (
-            <div>
-                <MuiThemeProvider>
-                    <div>
-                        <AppBar
-                            title="Register"
-                        />
-                        <TextField
-                            hintText="Enter your name"
-                            floatingLabelText="Name"
-                            onChange={(event,newValue) => this.setState({name:newValue})}
-                        />
-                        <br/>
-                        <TextField
-                            hintText="Enter your surname"
-                            floatingLabelText="Surname"
-                            onChange={(event,newValue) => this.setState({surname:newValue})}
-                        />
-                        <br/>
-                        <TextField
-                            hintText="Enter your email"
-                            floatingLabelText="Email"
-                            onChange={(event,newValue) => this.setState({email:newValue})}
-                        />
-                        <br/>
-                        <TextField
-                            type="Password"
-                            hintText="Enter your password"
-                            floatingLabelText="password"
-                            onChange={(event,newValue) => this.setState({password:newValue})}
-                        />
-                        <br/>
-                        <TextField
-                            type="Password"
-                            hintText="Enter your password again"
-                            floatingLabelText="Confirm Your Password"
-                            onChange={(event,newValue) => this.setState({verify_password:newValue})}
-                        />
-                        <br/>
-                        <Button
-                            color="elegant"
-                            size="md"
-                            label="Submit"
-                            primary={true}
-                            style={style}
-                            onClick={(event) => this.handleClick(event)}
-                        >Submit</Button>
-                    </div>
-                </MuiThemeProvider>
-            </div>
+            <Card class="cardRegister">
+                <CardBody>
+                    <CardTitle> Register </CardTitle>
+                    <CardText>
+                        <div class="cardLoginScreen">
+                            <Input
+                                label="Name"
+                                containerClass="active-cyan-2 mt-5 mb-3"
+                                onChange={(event,newValue) => this.setState({name:newValue})}
+                            />
+                            <br/>
+                            <Input
+                                label="Surname"
+                                containerClass="active-cyan-2 mt-0 mb-3"
+                                onChange={(event,newValue) => this.setState({surname:newValue})}
+                            />
+                            <br/>
+                            <Input
+                                label="Email"
+                                containerClass="active-cyan-2 mt-0 mb-3"
+                                onChange={(event,newValue) => this.setState({email:newValue})}
+                            />
+                            <br/>
+                            <Input
+                                type="Password"
+                                label="Password"
+                                containerClass="active-cyan-2 mt-0 mb-3"
+                                onChange={(event,newValue) => this.setState({password:newValue})}
+                            />
+                            <br/>
+                            <Input
+                                label="Confirm Your Password"
+                                containerClass="active-cyan-2 mt-0 mb-3"
+                                onChange={(event,newValue) => this.setState({verify_password:newValue})}
+                            />
+                            <br/>
+                            <Button
+                                color="elegant"
+                                size="md"
+                                label="Submit"
+                                primary={true}
+                                style={style}
+                                onClick={(event) => this.handleClick(event)}
+                            >Submit</Button>
+                        </div>
+                    </CardText>
+                </CardBody>
+            </Card>
         );
     }
 }
 
 const style ={
     margin: 15,
-    borderRadius: 15
+    borderRadius: 15,
+    'background-image':'linear-gradient(60deg, lightblue, darkblue)'
 };
 
 export default Register;
