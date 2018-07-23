@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router';
 import { Link } from 'react-router-dom';
 import {
     Header,
@@ -8,8 +7,6 @@ import {
 } from 'semantic-ui-react';
 import { Button, Container } from 'mdbreact';
 import Logo from '../../logo.svg';
-import Register from '../register';
-import Login from '../login';
 import AuthService from '../../services';
 
 class Page extends Component {
@@ -21,6 +18,9 @@ class Page extends Component {
 
     componentDidMount() {
         const params = this.props.location.search;
+        Button.defaultProps.disableRippleParent = true;
+        Button.defaultProps.disableRippleParent = true;
+
 
         setTimeout(function() {
 
@@ -42,26 +42,6 @@ class Page extends Component {
         }.bind(this), 1000);
     }
 
-    handleClick(event){
-        //console.log("event", event)
-        /*if (this.state.isLogin) {
-            this.setState({
-                buttonLabel:"Login",
-                isLogin:false
-            });
-            if (this.props.isAuthenticated) {
-                return <Redirect to='/login' replace/>
-            }
-        } else {
-            this.setState({
-                buttonLabel:"Register",
-                isLogin: true
-            });*/
-            //if (this.props.isAuthenticated) {
-                //return <Redirect to='/register' replace/>
-            //}
-    }
-
     render() {
         return (
             <div>
@@ -81,9 +61,6 @@ class Page extends Component {
                             />
                             <img id="logo" alt="logo" src={Logo}></img>
                         </Responsive>
-                        <Button color="elegant" size='md' >
-
-                        </Button><Link to="/register">Register</Link>
                     </Container>
                 </Segment>
                 <div className="course-tour">

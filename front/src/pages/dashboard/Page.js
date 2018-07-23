@@ -3,7 +3,6 @@ import {
     Header,
     Segment,
 } from 'semantic-ui-react';
-import PageHeader from '../../common/pageHeader';
 
 class Page extends Component {
     constructor(props) {
@@ -13,7 +12,6 @@ class Page extends Component {
     render() {
         return (
             <div>
-                <PageHeader heading="Dashboard"/>
                 <Segment vertical style={{minHeight: '100vh'}}>
                     <Header as='h1'>Dashboard</Header>
                 </Segment>

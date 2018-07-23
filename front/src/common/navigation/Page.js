@@ -25,31 +25,30 @@ class Page extends Component {
     render() {
         return (
             <div>
-                <Responsive as={Segment} inverted style={{marginBottom: '0', borderRadius: '0', padding: '1em 0em'}}
-                            className="navbar" minWidth={769}>
-                    <Menu inverted pointing secondary size='large'>
+                <Responsive as={Segment} inverted minWidth={769}>
+                    <nav className="navbar navbar-expand-lg navbar-dark bg-blue">
                         <Container>
                             <Menu.Item as={Link} to="/" replace>Home</Menu.Item>
                             <Menu.Item as={NavLink} to="/dashboard">Dashboard</Menu.Item>
-                            <Menu.Menu position='right'>
+                            <Menu.Menu>
                                 {this.props.isAuthenticated
-                                    ?<Menu className='bounceIn animated'>
+                                    ?<nav className='bounceIn animated'>
                                         <Menu.Item disabled key='user'>
                                             {"Signed in as " + this.props.userEmail}
                                         </Menu.Item>
                                         <Menu.Item onClick={this.handleLogout} icon='sign out'
                                                       key='logout'>Logout</Menu.Item>
-                                    </Menu>
+                                    </nav>
                                     : <div>
                                         <Menu.Item as={Link} to="/login" replace
-                                                style={{lineHeight: '2em'}}>Login</Menu.Item>
+                                                style={{lineHeight: '2em', paddingRight: '2em'}}>Login</Menu.Item>
                                         <Menu.Item as={Link} to="/register" replace
                                                 style={{lineHeight: '2em'}}>Register</Menu.Item>
                                     </div>
                                 }
                             </Menu.Menu>
                         </Container>
-                    </Menu>
+                    </nav>
                 </Responsive>
             </div>
         );

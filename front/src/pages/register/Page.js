@@ -5,7 +5,6 @@ import {Link, Redirect} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import ReeValidate from 'ree-validate';
 import AuthService from '../../services';
-import PageHeader from '../../common/pageHeader';
 
 class Page extends Component {
     constructor(props) {
@@ -204,7 +203,7 @@ class Page extends Component {
 const style ={
     margin: 15,
     borderRadius: 15,
-    'background-image':'linear-gradient(60deg, lightblue, darkblue)'
+    'backgroundImage':'linear-gradient(60deg, lightblue, darkblue)'
 };
 
 Page.propTypes = {

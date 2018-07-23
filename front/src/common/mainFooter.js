@@ -12,12 +12,12 @@ class Footer extends Component {
 
     render() {
         return (
-            <div className="footer">
+            <div className="footer fixed-bottom">
                 <Container>
                     <Grid columns="equal" verticalAlign="middle" className="foobar" stackable>
                         <Grid.Row>
                             <Grid.Column>
-                                <Header as="h5" inverted>Sample footer @ 2017</Header>
+                                <Header as="h5" inverted>Debecaan @ 2018</Header>
                             </Grid.Column>
                         </Grid.Row>
                     </Grid>

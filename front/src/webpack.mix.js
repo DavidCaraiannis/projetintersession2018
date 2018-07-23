@@ -11,5 +11,4 @@ let mix = require('laravel-mix');
  |
  */
 
-mix.react('index.js')
-    .styles('css/animate.css');
+mix.react('index.js');
