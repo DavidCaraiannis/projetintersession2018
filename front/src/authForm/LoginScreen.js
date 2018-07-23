@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Modal } from 'mdbreact';
 
-import Logo from './Nick-logo.svg';
+import Logo from './logo.svg';
 
 import Login from './Login';
 import Register from './Register';

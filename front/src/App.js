@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 //import logo from './logo.svg';
 import './App.css';
+import CardExample from './project';
 import LoginScreen from './authForm/LoginScreen';
 
 injectTapEventPlugin();

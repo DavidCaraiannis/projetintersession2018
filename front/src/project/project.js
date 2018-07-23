@@ -5,7 +5,7 @@ class CardExample extends React.Component {
     render() {
         return (
             <Card>
-                <CardImage className="img-fluid" src="https://mdbootstrap.com/img/Mockups/Lightbox/Thumbnail/img%20(67).jpg" waves />
+                <CardImage className="img" src="https://mdbootstrap.com/img/Mockups/Lightbox/Thumbnail/img%20(67).jpg" waves />
                 <CardBody>
                     <CardTitle> Projet Zero </CardTitle>
                     <CardText>Projet sur plusieurs semaines.</CardText>
@@ -15,3 +15,5 @@ class CardExample extends React.Component {
         )
     }
 }
+
+export default CardExample
