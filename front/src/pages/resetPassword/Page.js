@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import {Button, Dimmer, Form, Grid, Header, Loader, Message, Segment} from 'semantic-ui-react';
+import {Dimmer, Form, Grid, Header, Loader, Message, Segment} from 'semantic-ui-react';
+import { Button, Input } from 'mdbreact';
 import {Link, Redirect} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import ReeValidate from 'ree-validate';
@@ -128,24 +129,22 @@ class Page extends Component {
                         </Message>}
                         <Form size='large'>
                             <Segment stacked>
-                                <Form.Input
-                                    fluid
+                                <Input
                                     icon='lock'
                                     iconPosition='left'
-                                    name='password'
-                                    placeholder='New password'
+                                    label='password'
+                                    hint='New password'
                                     type='password'
                                     onChange={this.handleChange}
                                 />
                                 {errors.has('password') && <Header size='tiny' className='custom-error' color='red'>
                                     {errors.first('password')}
                                 </Header>}
-                                <Form.Input
-                                    fluid
+                                <Input
                                     icon='refresh'
                                     iconPosition='left'
-                                    name='password_confirmation'
-                                    placeholder='Confirm new password'
+                                    label='password_confirmation'
+                                    hint='Confirm new password'
                                     type='password'
                                     onChange={this.handleChange}
                                 />
@@ -153,7 +152,7 @@ class Page extends Component {
                                 <Header size='tiny' className='custom-error' color='red'>
                                     {errors.first('password_confirmation')}
                                 </Header>}
-                                <Button color='teal' fluid size='large' onClick={this.handleSubmit}>Change Password</Button>
+                                <Button color='elegant' size='md' onClick={this.handleSubmit}>Change Password</Button>
                             </Segment>
                         </Form>
                     </Grid.Column>

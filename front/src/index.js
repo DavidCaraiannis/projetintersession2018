@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-//import { render } from 'react-dom';
+import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import './index.css';
 import 'font-awesome/css/font-awesome.min.css';
@@ -17,7 +17,7 @@ store.dispatch(action.authCheck());
 
 ReactDOM.render(
     <Provider store={store}>
-        <Main/>
+        <Routes/>
     </Provider>,
     document.getElementById('root')
 );

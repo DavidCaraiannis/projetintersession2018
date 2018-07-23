@@ -1,15 +1,9 @@
 import React, { Component } from 'react';
 import {
-    Button,
-    Container,
     Grid,
     Header,
-    Icon,
-    List,
-    Responsive
 } from 'semantic-ui-react';
-
-import {Link} from 'react-router-dom';
+import { Container } from 'mdbreact';
 
 class Footer extends Component {
     constructor(props) {
@@ -20,7 +14,6 @@ class Footer extends Component {
         return (
             <div className="footer">
                 <Container>
-
                     <Grid columns="equal" verticalAlign="middle" className="foobar" stackable>
                         <Grid.Row>
                             <Grid.Column>

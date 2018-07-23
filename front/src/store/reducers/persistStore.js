@@ -1,5 +1,3 @@
-
-
 const reducer = (state = {}, {type, payload = null}) => {
     switch (type) {
         case 'persist/REHYDRATE':

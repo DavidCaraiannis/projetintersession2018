@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {
-    Button,
     Divider,
     Dimmer,
     Form,
@@ -9,7 +8,8 @@ import {
     Icon,
     Loader,
     Message,
-    Segment} from 'semantic-ui-react'
+    Segment} from 'semantic-ui-react';
+import { Button, Input } from 'mdbreact';
 import {Link, Redirect} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import ReeValidate from 'ree-validate';
@@ -137,19 +137,19 @@ class Page extends Component {
                         </Message>}
                         <Form size='large'>
                             <Segment stacked>
-                                <Form.Input
+                                <Input
                                     fluid
                                     icon='user'
                                     iconPosition='left'
-                                    name='email'
-                                    placeholder='E-mail address'
+                                    label='email'
+                                    hint='E-mail address'
                                     onChange={this.handleChange}
                                     error={errors.has('email')}
                                 />
                                 {errors.has('email') && <Header size='tiny' className='custom-error' color='red'>
                                     {errors.first('email')}
                                 </Header>}
-                                <Button color='teal' fluid size='large' onClick={this.handleSubmit}>Reset Password</Button>
+                                <Button color='elegant' size='md' onClick={this.handleSubmit}>Reset Password</Button>
                             </Segment>
                         </Form>
                         <Message>

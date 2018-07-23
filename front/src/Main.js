@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import Navigation from './common/navigation';
 import Footer from './common/mainFooter';
 
-class Main extends React.Component {
+class Main extends Component {
     constructor(props) {
         super(props);
     }

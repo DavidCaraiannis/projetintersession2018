@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {
-    Button,
     Divider,
     Dimmer,
     Form,
@@ -10,16 +9,14 @@ import {
     Loader,
     Message,
     Segment} from 'semantic-ui-react';
-//import { Button, Input } from 'mdbreact';
+import { Button, Input } from 'mdbreact';
 import {Link, Redirect} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import ReeValidate from 'ree-validate';
 import AuthService from '../../services';
 import PageHeader from '../../common/pageHeader';
-import axios from 'axios';
-import ProjectPage from '../../projectPage';
 
-class Login extends Component {
+class Page extends Component {
     constructor(props) {
         super(props);
         this.validator = new ReeValidate({
@@ -87,10 +84,6 @@ class Login extends Component {
 
     }
 
-    onSocialClick(event, data) {
-        window.location.assign(`redirect/${data.service}`);
-    }
-
     componentDidMount(){
         this.setState({
             isLoading: false
@@ -110,7 +103,6 @@ class Login extends Component {
 
         return (
             <div>
-                <PageHeader heading="login"/>
                 <Segment className='page-loader' style={{display: this.state.isLoading ? 'block' : 'none'}}>
                     <Dimmer active inverted>
                         <Loader size='large'>Authenticating...</Loader>
@@ -133,11 +125,11 @@ class Login extends Component {
                         </Message>}
                         <Form size='large'>
                             <Segment stacked>
-                                <Form.Input
-                                    fluid
+                                <Input
                                     icon='user'
                                     iconPosition='left'
-                                    name='email'
+                                    name="email"
+                                    label='email'
                                     placeholder='E-mail address'
                                     onChange={this.handleChange}
                                     error={errors.has('email')}
@@ -145,11 +137,11 @@ class Login extends Component {
                                 {errors.has('email') && <Header size='tiny' className='custom-error' color='red'>
                                     {errors.first('email')}
                                 </Header>}
-                                <Form.Input
-                                    fluid
+                                <Input
                                     icon='lock'
                                     iconPosition='left'
-                                    name='password'
+                                    name="password"
+                                    label='password'
                                     placeholder='Password'
                                     type='password'
                                     onChange={this.handleChange}
@@ -158,22 +150,9 @@ class Login extends Component {
                                 {errors.has('password') && <Header size='tiny' className='custom-error' color='red'>
                                     {errors.first('password')}
                                 </Header>}
-                                <Button color='teal' fluid size='large' onClick={this.handleSubmit}>Login</Button>
+                                <Button color='elegant' size='md' onClick={this.handleSubmit}>Login</Button>
                                 <Link to='/forgot-password' replace>Forgot your password?</Link>
                                 <div className="ui divider"></div>
-                                <div>Or login with:</div><br/>
-                                <Button onClick={this.onSocialClick.bind(this)} service="facebook" className="ui circular facebook icon button">
-                                    <Icon className="facebook icon" />
-                                </Button>
-                                <Button onClick={this.onSocialClick.bind(this)} service="twitter" className="ui circular twitter icon button">
-                                    <Icon className="twitter icon" />
-                                </Button>
-                                <Button onClick={this.onSocialClick.bind(this)} service="linkedin" className="ui circular linkedin icon button">
-                                    <Icon className="linkedin icon" />
-                                </Button>
-                                <Button onClick={this.onSocialClick.bind(this)} service="google" className="ui circular google plus icon button">
-                                    <Icon className="google plus icon" />
-                                </Button>
                             </Segment>
                         </Form>
                         <Message>
@@ -184,76 +163,11 @@ class Login extends Component {
             </div>
         );
     }
-
-    /*handleClick(event) {
-        const apiBaseUrl = "http://localhost:5000/api/";
-        let self = this;
-        let payload = {
-            email: this.state.email,
-            password: this.state.password
-        };
-
-        axios.post(apiBaseUrl+'login', payload)
-            .then(function (response) {
-                console.log(response);
-                if (response.data.code === 200){
-                    console.log("Login successful");
-                    let projectPage=[];
-                    projectPage.push(<ProjectPage appContext={self.props.appContext}/>);
-                    self.props.setState({loginPage:[], projectPage:projectPage})
-                } else if (response.data.code === 204) {
-                    console.log("Email password do not match");
-                    alert("email password do not match")
-                } else {
-                    console.log("Email does not exists");
-                    alert("Email does not exist");
-                }
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-    }*/
-
-    /*render(){
-        return (
-            <div>
-                <div>
-                    <Input
-                        type="text"
-                        hint="Enter Your Email"
-                        label="Email"
-                        onChange={(event, newValue) => this.setState({email:newValue})}
-                    />
-                    <br/>
-                    <Input
-                        type="password"
-                        hint="Enter Your Password"
-                        label="Password"
-                        onChange={(event, newValue) => this.setState({password:newValue})}
-                    />
-                    <br/>
-                    <Button
-                        color="elegant"
-                        size="md"
-                        label="Submit"
-                        primary={true}
-                        style={style}
-                        onClick={(event) => this.handleClick(event)}
-                    >Submit</Button>
-                </div>
-            </div>
-        );
-    }*/
 }
 
-const style = {
-    margin: 15,
-};
-//export default Login;
-
-Login.propTypes = {
+Page.propTypes = {
     isAuthenticated: PropTypes.bool.isRequired,
     dispatch: PropTypes.func.isRequired
 };
 
-export default Login;
+export default Page;
