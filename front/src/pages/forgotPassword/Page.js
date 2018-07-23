@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import {
-    Divider,
     Dimmer,
     Form,
     Grid,
     Header,
-    Icon,
     Loader,
     Message,
     Segment} from 'semantic-ui-react';

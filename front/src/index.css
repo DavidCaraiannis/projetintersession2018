@@ -13,20 +13,18 @@ body {
     width: 70%;
     height: auto;
 
-    color: white;
     text-align: center;
 }
 
-.loginscreen {
-    margin: 0;
-    padding: 0;
-}
-
-.card.cardRegister {
+.cardRegister {
     width: 40%;
     margin: auto;
     border-radius: 15px;
+    text-align: center;
+}
 
+.icon-position {
+    text-align: left;
 }
 
 #logo {

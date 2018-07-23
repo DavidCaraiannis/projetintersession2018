@@ -14,12 +14,6 @@ const routes = [
         component: Home
     },
     {
-        path: '/login/:social',
-        exact: false,
-        auth: false,
-        component: Home
-    },
-    {
         path: '/login',
         exact: true,
         auth: false,
@@ -44,7 +38,7 @@ const routes = [
         component: ResetPassword
     },
     {
-        path: '/dashboard',
+        path: '/project',
         exact: true,
         auth: true,
         component: Dashboard

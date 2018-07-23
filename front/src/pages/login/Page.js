@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import {
-    Divider,
     Dimmer,
     Form,
     Grid,
     Header,
-    Icon,
     Loader,
     Message,
     Segment} from 'semantic-ui-react';
@@ -14,7 +12,6 @@ import {Link, Redirect} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import ReeValidate from 'ree-validate';
 import AuthService from '../../services';
-import PageHeader from '../../common/pageHeader';
 
 class Page extends Component {
     constructor(props) {
@@ -112,7 +109,7 @@ class Page extends Component {
                 <Grid
                     textAlign='center'
                     verticalAlign='middle'
-                    className='login-form'
+                    className='login-form cardRegister'
                 >
                     <Grid.Column style={{maxWidth: '450px'}}>
                         <Header as='h2' color='teal' textAlign='center'>
@@ -127,10 +124,10 @@ class Page extends Component {
                             <Segment stacked>
                                 <Input
                                     icon='user'
-                                    iconPosition='left'
+                                    iconposition='left'
                                     name="email"
                                     label='email'
-                                    placeholder='E-mail address'
+                                    containerClass="icon-position"
                                     onChange={this.handleChange}
                                     error={errors.has('email')}
                                 />
@@ -139,11 +136,11 @@ class Page extends Component {
                                 </Header>}
                                 <Input
                                     icon='lock'
-                                    iconPosition='left'
+                                    iconposition='left'
                                     name="password"
                                     label='password'
-                                    placeholder='Password'
                                     type='password'
+                                    containerClass="icon-position"
                                     onChange={this.handleChange}
                                     error={errors.has('password')}
                                 />

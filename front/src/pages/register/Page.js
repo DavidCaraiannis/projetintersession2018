@@ -111,7 +111,7 @@ class Page extends Component {
                 <Grid
                     textAlign='center'
                     verticalAlign='middle'
-                    className='login-form'
+                    className='login-form cardRegister'
                 >
                     <Grid.Column style={{maxWidth: '450px'}}>
                         <Header as='h2' color='teal' textAlign='center'>
@@ -131,10 +131,10 @@ class Page extends Component {
                             <Segment stacked>
                                 <Input
                                     icon='user'
-                                    iconPosition='left'
+                                    iconposition='left'
                                     name="name"
                                     label='Name'
-                                    containerClass="active-cyan-2 mt-2 mb-0"
+                                    containerClass="active-cyan-2 mt-0 mb-4 icon-position"
                                     onChange={this.handleChange}
                                 />
                                 {errors.has('name') && <Header size='tiny' className='custom-error' color='red'>
@@ -142,10 +142,10 @@ class Page extends Component {
                                 </Header>}
                                 <Input
                                     icon='user'
-                                    iconPosition='left'
+                                    iconposition='left'
                                     name="surname"
                                     label='Surname'
-                                    containerClass="active-cyan-2 mt-2 mb-0"
+                                    containerClass="active-cyan-2 mt-0 mb-4 icon-position"
                                     onChange={this.handleChange}
                                 />
                                 {errors.has('surname') && <Header size='tiny' className='custom-error' color='red'>
@@ -153,10 +153,10 @@ class Page extends Component {
                                 </Header>}
                                 <Input
                                     icon='envelope'
-                                    iconPosition='left'
+                                    iconposition='left'
                                     name="email"
                                     label='Email'
-                                    containerClass="active-cyan-2 mt-2 mb-0"
+                                    containerClass="active-cyan-2 mt-0 mb-4 icon-position"
                                     onChange={this.handleChange}
                                 />
                                 {errors.has('email') && <Header size='tiny' className='custom-error' color='red'>
@@ -168,7 +168,7 @@ class Page extends Component {
                                     name="password"
                                     label='Password'
                                     type='password'
-                                    containerClass="active-cyan-2 mt-2 mb-0"
+                                    containerClass="active-cyan-2 mt-0 mb-4 icon-position"
                                     onChange={this.handleChange}
                                 />
                                 {errors.has('password') && <Header size='tiny' className='custom-error' color='red'>
@@ -180,7 +180,7 @@ class Page extends Component {
                                     name="password"
                                     label='Confirm your password'
                                     type='password'
-                                    containerClass="active-cyan-2 mt-2 mb-0"
+                                    containerClass="active-cyan-2 mt-0 mb-4 icon-position"
                                     onChange={this.handleChange}
                                 />
                                 {errors.has('password_confirmation') &&
