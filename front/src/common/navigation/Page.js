@@ -29,7 +29,7 @@ class Page extends Component {
                     <nav className="navbar navbar-expand-lg navbar-dark bg-blue">
                         <Container>
                             <Menu.Item as={Link} to="/" replace>Home</Menu.Item>
-                            <Menu.Item as={NavLink} to="/dashboard">Dashboard</Menu.Item>
+                            <Menu.Item as={NavLink} to="/project">Project</Menu.Item>
                             <Menu.Menu>
                                 {this.props.isAuthenticated
                                     ?<nav className='bounceIn animated'>

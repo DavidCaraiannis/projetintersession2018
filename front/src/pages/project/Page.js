@@ -1,6 +1,5 @@
 import React from 'react';
 import { Button, Card, CardBody, CardImage, CardTitle, CardText } from 'mdbreact';
-import Plus from './add_plus_btn.svg';
 
 class CardExample extends React.Component {
     constructor(props) {
@@ -13,10 +12,9 @@ class CardExample extends React.Component {
         return [
             <Button
                 className="add-project-btn"
-                size="md"
                 label="submit"
-                primary="true">
-                <img id="plus" alt="" src={Plus}></img>
+                color="transparent"
+                primary="true">+
             </Button>,
             <Card className="card-project">
                 <CardImage className="img" src="https://cdn.dribbble.com/users/43762/screenshots/1438974/ng-colab-space_night.gif" waves />
@@ -31,7 +29,7 @@ class CardExample extends React.Component {
                 <CardBody>
                     <CardTitle> Projet Zero </CardTitle>
                     <CardText>Projet sur plusieurs semaines.</CardText>
-                    <Button className="project-btn" href="#">Projet</Button>
+                    <Button className="project-btn"  href="#">Projet</Button>
                 </CardBody>
             </Card>,
             <Card className="card-project">
@@ -39,7 +37,7 @@ class CardExample extends React.Component {
                 <CardBody>
                     <CardTitle> Projet Zero </CardTitle>
                     <CardText>Projet sur plusieurs semaines.</CardText>
-                    <Button className="project-btn" href="#">Projet</Button>
+                    <Button className="project-btn"  href="#">Projet</Button>
                 </CardBody>
             </Card>
         ]

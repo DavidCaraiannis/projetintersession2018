@@ -3,7 +3,6 @@ import Login from '../pages/login';
 import Register from '../pages/register';
 import ForgotPassword from '../pages/forgotPassword';
 import ResetPassword from '../pages/resetPassword';
-import Dashboard from '../pages/dashboard';
 import NoMatch from '../pages/noMatch';
 import CardExample from "../pages/project/Page";
 

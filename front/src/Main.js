@@ -12,7 +12,7 @@ class Main extends Component {
         return (
             <div>
                 <Navigation/>
-                <main className="fadeIn animated">
+                <main className="fadeIn animated viewglobal">
                     {this.props.children}
                 </main>
                 <Footer/>

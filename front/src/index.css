@@ -16,19 +16,12 @@ body {
     height: auto;
 
     color: white;
-    text-align: center;
 }
 
-.loginscreen {
-    margin: 0;
-    padding: 0;
-}
-
-.card.cardRegister {
-    width: 40%;
+.cardRegister {
     margin: auto;
     border-radius: 15px;
-
+    text-align: left;
 }
 
 .card-project {
@@ -39,7 +32,7 @@ body {
 }
 
 
-#root {
+.viewglobal {
     display: flex;
     flex-direction: row;
     text-align: center;
@@ -62,9 +55,9 @@ Button.add-project-btn {
     border-radius: 50%;
     height: 50px;
     width: 50px;
-}
-
-#plus {
-    width: 20px;
-    margin: 0;
+    display: flex;
+    justify-content: center;
+    font-size: 2rem;
+    padding: 0;
+    background-color: darkred;
 }
