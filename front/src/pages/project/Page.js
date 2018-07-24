@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Card, CardBody, CardImage, CardTitle, CardText } from 'mdbreact';
 
-class CardExample extends React.Component {
+class Project extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -44,4 +44,4 @@ class CardExample extends React.Component {
     }
 }
 
-export default CardExample
+export default Project

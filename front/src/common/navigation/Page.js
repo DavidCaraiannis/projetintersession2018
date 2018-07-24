@@ -30,6 +30,7 @@ class Page extends Component {
                         <Container>
                             <Menu.Item as={Link} to="/" replace>Home</Menu.Item>
                             <Menu.Item as={NavLink} to="/project">Project</Menu.Item>
+                            <Menu.Item as={NavLink} to="/gantt">Gantt</Menu.Item>
                             <Menu.Menu>
                                 {this.props.isAuthenticated
                                     ?<nav className='bounceIn animated'>

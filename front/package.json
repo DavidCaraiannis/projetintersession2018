@@ -5,6 +5,7 @@
   "dependencies": {
     "ajv": "^6.5.2",
     "axios": "^0.18.0",
+    "dhtmlx-gantt": "^5.2.0",
     "jquery": "^3.3.1",
     "mdbreact": "^4.6.0",
     "prop-types": "^15.6.2",

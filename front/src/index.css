@@ -7,15 +7,8 @@ body {
 /* ------- LOGIN REGISTER PAGE ------- */
 
 .cardLoginScreen {
-    position: relative;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, 0%);
-
     width: 70%;
     height: auto;
-
-    color: white;
 }
 
 .cardRegister {
@@ -30,7 +23,6 @@ body {
     max-width: 300px;
     min-width: 300px;
 }
-
 
 .viewglobal {
     display: flex;

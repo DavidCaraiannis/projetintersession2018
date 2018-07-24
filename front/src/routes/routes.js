@@ -4,7 +4,8 @@ import Register from '../pages/register';
 import ForgotPassword from '../pages/forgotPassword';
 import ResetPassword from '../pages/resetPassword';
 import NoMatch from '../pages/noMatch';
-import CardExample from "../pages/project/Page";
+import Project from '../pages/project';
+import GanttPage from '../pages/gantt';
 
 const routes = [
     {
@@ -37,11 +38,17 @@ const routes = [
         auth: false,
         component: ResetPassword
     },
-    {
+    {// TODO change false to true après connexion au back
         path: '/project',
         exact: true,
         auth: false,
-        component: CardExample
+        component: Project
+    },
+    {// TODO change false to true après connexion au back
+        path: '/gantt',
+        exact: true,
+        auth: false,
+        component: GanttPage
     },
     {
         path: '',
