@@ -9,7 +9,6 @@ import store from './store';
 import Routes from './routes';
 import * as action from './store/actions';
 import registerServiceWorker from './registerServiceWorker';
-import CardExample from './project/project';
 
 store.dispatch(action.authCheck());
 

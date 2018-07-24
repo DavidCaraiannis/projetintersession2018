@@ -1,6 +1,5 @@
 import React from 'react';
 import { Button, Card, CardBody, CardImage, CardTitle, CardText } from 'mdbreact';
-import '../index.css';
 import Plus from './add_plus_btn.svg';
 
 class CardExample extends React.Component {
