@@ -99,7 +99,7 @@ class Page extends Component {
         const {errors} = this.state;
 
         return (
-            <div>
+            <div className="login-account">
                 <Segment className='page-loader' style={{display: this.state.isLoading ? 'block' : 'none'}}>
                     <Dimmer active inverted>
                         <Loader size='large'>Authenticating...</Loader>
@@ -109,11 +109,11 @@ class Page extends Component {
                 <Grid
                     textAlign='center'
                     verticalAlign='middle'
-                    className='login-form cardRegister'
+                    className='login-form'
                 >
-                    <Grid.Column style={{maxWidth: '450px'}}>
-                        <Header as='h2' color='teal' textAlign='center'>
-                            Login to your account
+                    <Grid.Column  style={{maxWidth: '450px'}}>
+                        <Header id='title-login' as='h2' textAlign='center'>
+                            <span>Login</span> to your account
                         </Header>
                         {this.state.responseError.isError && <Message negative>
                             <Message.Content>
@@ -123,6 +123,7 @@ class Page extends Component {
                         <Form size='large'>
                             <Segment stacked>
                                 <Input
+                                    className="mail-login"
                                     icon='user'
                                     iconposition='left'
                                     name="email"
@@ -131,10 +132,17 @@ class Page extends Component {
                                     onChange={this.handleChange}
                                     error={errors.has('email')}
                                 />
-                                {errors.has('email') && <Header size='tiny' className='custom-error' color='red'>
+                                {/* error message for wrong mail  */}
+                                {errors.has('email') && <Header
+                                    id='errorMailMsg'
+                                    size='tiny'
+                                    className='custom-error'
+                                    color=''>
                                     {errors.first('email')}
                                 </Header>}
+
                                 <Input
+                                    className="pass-login"
                                     icon='lock'
                                     iconposition='left'
                                     name="password"
@@ -144,16 +152,22 @@ class Page extends Component {
                                     onChange={this.handleChange}
                                     error={errors.has('password')}
                                 />
-                                {errors.has('password') && <Header size='tiny' className='custom-error' color='red'>
+                                {/* error message for wrong password */}
+                                {errors.has('password') && <Header
+                                    id='errorPassMsg'
+                                    size='tiny'
+                                    className='custom-error'
+                                    color=''>
                                     {errors.first('password')}
                                 </Header>}
-                                <Button color='elegant' size='md' onClick={this.handleSubmit}>Login</Button>
-                                <Link to='/forgot-password' replace>Forgot your password?</Link>
+
+                                <Button id='login-page-button' color='elegant' size='md' style={style} onClick={this.handleSubmit}>Login</Button>
+                                <Link id='link-forgot-pass' to='/forgot-password' replace>Forgot your password?</Link>
                                 <div className="ui divider"></div>
                             </Segment>
                         </Form>
-                        <Message>
-                            New to us? <Link to='/register' replace>Register</Link>
+                        <Message id='new-to-us'>
+                            New to us ?&nbsp; <Link to='/register' replace> Register</Link>
                         </Message>
                     </Grid.Column>
                 </Grid>
@@ -161,6 +175,12 @@ class Page extends Component {
         );
     }
 }
+
+const style={
+    borderRadius: 15,
+    'backgroundImage':'linear-gradient(60deg, lightblue, darkblue)'
+
+};
 
 Page.propTypes = {
     isAuthenticated: PropTypes.bool.isRequired,

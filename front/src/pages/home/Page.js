@@ -14,7 +14,7 @@ class Page extends Component {
 
     render() {
         return (
-            <div>
+            <div className="logo-HomePage">
                 <Segment
                     inverted
                     textAlign='center'
@@ -23,20 +23,15 @@ class Page extends Component {
                 >
                     <Container>
                         <Responsive minWidth={769}>
-                            <Header
-                                as="h2"
-                                content="Welcome"
-                                inverted
-                                className="pretitle"
-                            />
+                            <Header />
                             <img id="logo" alt="logo" src={Logo}></img>
                         </Responsive>
                     </Container>
                 </Segment>
                 <div className="course-tour">
                     <Container style={{padding: '2em 0em'}}>
-                        <Header as="h3" content="About our company"/>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                        <Header as="h4" style={{color: '#005d7bc7'}} content="The Ganttesque Management"/>
+                        <p style={{color: 'gray'}} >Since 2018</p>
                     </Container>
                 </div>
             </div>

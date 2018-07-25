@@ -13,11 +13,11 @@ class Footer extends Component {
     render() {
         return (
             <div className="footer fixed-bottom">
-                <Container>
+                <Container textAlign="center" >
                     <Grid columns="equal" verticalAlign="middle" className="foobar" stackable>
                         <Grid.Row>
                             <Grid.Column>
-                                <Header as="h5" inverted>Debecaan @ 2018</Header>
+                                <Header as="h6" inverted>Debecaan @ 2018</Header>
                             </Grid.Column>
                         </Grid.Row>
                     </Grid>
