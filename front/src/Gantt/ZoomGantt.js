@@ -6,7 +6,30 @@ class ZoomGantt extends Component {
 
     constructor(props) {
         super(props);
-        this.setGantt = this.setGantt.bind(this);
+        this.enable = this.enable.bind(this);
+        this.isEnabled = this.isEnabled.bind(this);
+        this.toggle = this.toggle.bind(this);
+        this.disable = this.disable.bind(this);
+        this.saveConfig= this.saveConfig.bind(this);
+        this.restoreConfig = this.restoreConfig.bind(this);
+        this.applyConfig = this.applyConfig.bind(this);
+        this.zoomToFit = this.zoomToFit.bind(this);
+        this.getUnitsBetween = this.getUnitsBetween.bind(this);
+        this.deactivate = this.deactivate.bind(this);
+        this.setScaleConfig = this.setScaleConfig.bind(this);
+        this.refresh= this.refresh.bind(this);
+        this.zoomOut = this.zoomOut.bind(this);
+        this.zoomIn = this.zoomIn.bind(this);
+        this.addClass = this.addClass.bind(this);
+        this.removeClass = this.removeClass.bind(this);
+        this.getButton = this.getButton.bind(this);
+        this.highlightButton = this.highlightButton.bind(this);
+        this.unhighlightButton = this.unhighlightButton.bind(this);
+        this.disableButton = this.disableButton.bind(this);
+        this.enableButton = this.enableButton.bind(this);
+        this.refreshZoomBtns= this.refreshZoomBtns.bind(this);
+        this.refreshUndoBtns = this.refreshUndoBtns.bind(this);
+        this.toggleZoomToFitBtn= this.toggleZoomToFitBtn.bind(this);
     }
 
     // Methods used for Zoom to fit
