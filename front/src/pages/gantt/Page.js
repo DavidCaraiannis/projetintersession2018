@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Gantt from '../../Gantt/Gantt';
 import Toolbar from '../../Gantt/Toolbar';
 import MessageArea from '../../Gantt/MessageArea';
+//import NavbarMenu from "../../Gantt/NavbarMenu";
 
 let projects_milestones_critical = {
     data: [
@@ -63,11 +64,6 @@ class Page extends Component {
             currentZoomIn: 4,
             currentZoomOut: 4,
             currentZoomToFit: 4,
-            isEnabled: true,
-            enabled: true,
-            current: 0,
-            isActive: true,
-            cachedSettings: {},
             messages: []
         };
 
@@ -261,3 +257,43 @@ zoom={this.state.currentZoom}
 
                     zoom={this.state.currentZoom} // dans <gantt>
                     */
+/*
+                    undoBtn={this.state.currentUndo}
+                    redoBtn={this.state.currentRedo}
+                    fullscreenBtn={this.state.currentFullscreen}
+                    collapseAllBtn={this.state.currentCollapseAll}
+                    expandAllBtn={this.state.currentExpandAll}
+                    toPDFBtn={this.state.currentToPDF}
+                    toPNGBtn={this.state.currentToPNG}
+                    toExcelBtn={this.state.currentToExcel}
+                    toMSProjectBtn={this.state.currentToMSProject}
+                    zoomInBtn={this.state.currentZoomIn}
+                    zoomOutBtn={this.state.currentZoomOut}
+                    zoomToFItBtn={this.state.currentZoomToFit}
+
+                    onUndo={this.handleUndo}
+                    onRedo={this.handleRedo}
+                    onFullscreen={this.handleFullscreen}
+                    onCollapseAll={this.handleCollapseAll}
+                    onExpandAll={this.handleExpandAll}
+                    onToPDF={this.toPDF}
+                    onToPNG={this.toPNG}
+                    onToExcel={this.toExcel}
+                    onToMSProject={this.toMSProject}
+                    onZoomIn={this.handleZoomIn}
+                    onZoomOut={this.handleZoomOut}
+                    onZoomToFit={this.handleZoomToFit}*/
+
+/*
+* undoBtn={this.state.currentUndo}
+                        redoBtn={this.state.currentRedo}
+                        fullscreenBtn={this.state.currentFullscreen}
+                        collapseAllBtn={this.state.currentCollapseAll}
+                        expandAllBtn={this.state.currentExpandAll}
+                        toPDFBtn={this.state.currentToPDF}
+                        toPNGBtn={this.state.currentToPNG}
+                        toExcelBtn={this.state.currentToExcel}
+                        toMSProjectBtn={this.state.currentToMSProject}
+                        zoomInBtn={this.state.currentZoomIn}
+                        zoomOutBtn={this.state.currentZoomOut}
+                        zoomToFitBtn={this.state.currentZoomToFit}*/

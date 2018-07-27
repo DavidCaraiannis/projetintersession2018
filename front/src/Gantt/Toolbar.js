@@ -1,3 +1,4 @@
+/*global gantt*/
 import React, { Component } from 'react';
 import { Button, Container, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'mdbreact';
 import { Menu, Responsive, Segment} from "semantic-ui-react";
@@ -26,8 +27,10 @@ export default class Toolbar extends Component {
         }
     }*/
 
-    handleUndo() {
-        this.props.onUndo;
+    handleUndo(e) {
+        if (this.props.onUndo) {
+            this.props.onUndo(e.target.value);
+        }
     }
     handleRedo() {
         this.props.onRedo;
@@ -70,7 +73,7 @@ export default class Toolbar extends Component {
             <div>
                 <Responsive as={Segment} inverted minWidth={769}>
                     <nav className="navbar navbar-expand-lg navbar-dark bg-blue">
-                        <Container>
+                        <Container className="gantt-controls">
                             <Menu.Item className="gantt-menu-item" data-action="collapseAll">
                                 <Button onClick={this.handleCollapseAll}>Collapse All</Button>
                             </Menu.Item>
@@ -89,7 +92,7 @@ export default class Toolbar extends Component {
                             <Menu.Item className="gantt-menu-item gantt-menu-item-right" data-action="zoomIn">
                                 <Button onClick={this.handleZoomIn}>Zoom In</Button>
                             </Menu.Item>
-                            <Menu.Item className="gantt-menu-item gantt-menu-item-right" data-action="ZoomOut">
+                            <Menu.Item className="gantt-menu-item gantt-menu-item-right" data-action="zoomOut">
                                 <Button onClick={this.handleZoomOut}>Zoom Out</Button>
                             </Menu.Item>
                             <Menu.Item className="gantt-menu-item gantt-menu-item-right gantt-menu-item-last" data-action="zoomToFit">
@@ -99,11 +102,11 @@ export default class Toolbar extends Component {
                             <DropdownToggle caret color="primary" className="gantt-menu-item gantt-menu-item-right gantt-menu-item-last">
                                 Export
                             </DropdownToggle>
-                                <DropdownMenu>
-                                    <DropdownItem className="gantt-menu-item" data-action="toPDF"><Button onClick={this.toPDF}>To PDF</Button></DropdownItem>
-                                    <DropdownItem className="gantt-menu-item" data-action="toPNG"><Button onClick={this.toPNG}>To PNG</Button></DropdownItem>
-                                    <DropdownItem className="gantt-menu-item" data-action="toExcel"><Button onClick={this.toExcel}>To Excel</Button></DropdownItem>
-                                    <DropdownItem className="gantt-menu-item" data-action="toMSProject"><Button onClick={this.toMSProject}>To MSProject</Button></DropdownItem>
+                                <DropdownMenu className="gantt-controls">
+                                    <DropdownItem className="gantt-menu-item" data-action="toPDF" onClick={this.toPDF}>To PDF</DropdownItem>
+                                    <DropdownItem className="gantt-menu-item" data-action="toPNG" onClick={this.toPNG}>To PNG</DropdownItem>
+                                    <DropdownItem className="gantt-menu-item" data-action="toExcel" onClick={this.toExcel}>To Excel</DropdownItem>
+                                    <DropdownItem className="gantt-menu-item" data-action="toMSProject" onClick={this.toMSProject}>To MSProject</DropdownItem>
                                 </DropdownMenu>
                             </Dropdown>
                         </Container>
@@ -149,7 +152,3 @@ export default class Toolbar extends Component {
             )
         });
 */
-
-    /*function setScaleConfig(config){
-        configs[config]();
-    }*/
