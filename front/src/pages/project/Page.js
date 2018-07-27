@@ -5,30 +5,56 @@ class Project extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-
-        }
-
-    const array =[0,1,2,3,4]
+            itemArray: []
+        };
+        this.createProject = this.createProject.bind(this);
 
     }
+
+    createProject() {
+        const item = this.state.itemArray;
+        const title = ''
+        const text = ''
+        item.push({title, text})
+        this.setState({itemArray: item})
+    }
+
+
+
     render() {
         return (
             <div className="viewglobal">
                 <Button
+                    id="create-new-project"
+                    onClick={this.createProject}
                     className="add-project-btn"
                     label="submit"
                     color="transparent"
                     primary="true">+
                 </Button>
-                <Card className="card-project">
+                <div>
+                    {this.state.itemArray.map((item, index) => {
+                        return (
+                            <Card className="card-project">
+                                <CardImage id={index} className="img-project img" width="100%" src="https://cdn.dribbble.com/users/256781/screenshots/2933600/designers_dribble_06.gif" waves />
+                                <CardBody>
+                                    <CardTitle>{item.title}</CardTitle>
+                                    <CardText>{item.text}</CardText>
+                                    <Button className="project-btn" href="#">Projet</Button>
+                                </CardBody>
+                            </Card>
+                        )
+                    })}
+                </div>
+                {/* <Card className="card-project">
                     <CardImage id="img-project" className="img" width="100%" src="https://cdn.dribbble.com/users/256781/screenshots/2933600/designers_dribble_06.gif" waves />
                     <CardBody>
                         <CardTitle> Projet Zero </CardTitle>
                         <CardText>Projet sur plusieurs semaines.</CardText>
                         <Button className="project-btn" href="#">Projet</Button>
                     </CardBody>
-                </Card>
-                <Card className="card-project">
+                </Card> */}
+                {/* <Card className="card-project">
                     <CardImage id="img-project" className="img" width="100%" src="https://cdn.dribbble.com/users/43762/screenshots/3674249/ms-dir-dribbble-1.gif" waves />
                     <CardBody>
                         <CardTitle> Projet Zero </CardTitle>
@@ -51,7 +77,7 @@ class Project extends React.Component {
                         <CardText>Projet sur plusieurs semaines.</CardText>
                         <Button className="project-btn"  href="#">Projet</Button>
                     </CardBody>
-                </Card>
+                </Card> */}
             </div>
         )
     }
