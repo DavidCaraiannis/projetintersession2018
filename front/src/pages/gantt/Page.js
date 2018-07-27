@@ -50,28 +50,125 @@ class Page extends Component {
     constructor(props){
         super(props);
         this.state= {
-            currentZoom: 'Days',
-            //currentToggle: '1',
+            //currentZoom: 'Days',
+            currentUndo: 'Yes',
+            currentRedo: 'Yes',
+            currentFullscreen: false,
+            currentCollapseAll: false,
+            currentExpandAll: true,
+            currentToPDF: 'Yes',
+            currentToPNG: 'Yes',
+            currentToExcel: 'Yes',
+            currentToMSProject: 'Yes',
+            currentZoomIn: 4,
+            currentZoomOut: 4,
+            currentZoomToFit: 4,
+            isEnabled: true,
+            enabled: true,
+            current: 0,
+            isActive: true,
+            cachedSettings: {},
             messages: []
         };
 
-        this.handleZoomChange = this.handleZoomChange.bind(this);
-        //this.handleToggleMode = this.handleToggleMode.bind(this);
+        //this.handleZoomChange = this.handleZoomChange.bind(this);
+        this.handleUndo=this.handleUndo.bind(this);
+        this.handleRedo=this.handleRedo.bind(this);
+        this.handleFullscreen=this.handleFullscreen.bind(this);
+        this.handleCollapseAll=this.handleCollapseAll.bind(this);
+        this.handleExpandAll=this.handleExpandAll.bind(this);
+        this.toPDF=this.toPDF.bind(this);
+        this.toPNG=this.toPNG.bind(this);
+        this.toExcel=this.toExcel.bind(this);
+        this.toMSProject=this.toMSProject.bind(this);
+        this.handleZoomIn=this.handleZoomIn.bind(this);
+        this.handleZoomOut=this.handleZoomOut.bind(this);
+        this.handleZoomToFit=this.handleZoomToFit.bind(this);
         this.logTaskUpdate = this.logTaskUpdate.bind(this);
         this.logLinkUpdate = this.logLinkUpdate.bind(this);
     }
 
-    handleZoomChange(zoom) {
+    /*handleZoomChange(zoom) {
         this.setState({
             currentZoom: zoom
         })
+    }*/
+
+    // Buttons navbar Gantt
+
+    handleUndo(undoBtn) {
+        this.setState({
+            currentUndo: undoBtn
+        })
     }
 
-    /*handleToggleMode(toggleMode) {
+    handleRedo(redoBtn) {
         this.setState({
-            currentToggle: toggleMode
+            currentRedo: redoBtn
         })
-    }*/
+    }
+
+    handleFullscreen(fullscreenBtn) {
+        this.setState({
+            currentFullscreen: fullscreenBtn
+        })
+    }
+
+    handleCollapseAll(collapseAllBtn) {
+        this.setState({
+            currentCollapseAll: collapseAllBtn
+        })
+    }
+
+    handleExpandAll(expandAllBtn) {
+        this.setState({
+            currentExpandAll: expandAllBtn
+        })
+    }
+
+    toPDF(toPDFBtn) {
+        this.setState({
+            currentToPDF: toPDFBtn
+        })
+    }
+
+    toPNG(toPNGBtn) {
+        this.setState({
+            currentToPNG: toPNGBtn
+        })
+    }
+
+    toExcel(toExcelBtn) {
+        this.setState({
+            currentToExcel: toExcelBtn
+        })
+    }
+
+    toMSProject(toMSProjectBtn) {
+        this.setState({
+            currentMSProject: toMSProjectBtn
+        })
+    }
+
+    handleZoomIn(zoomInBtn) {
+        this.setState({
+            currentZoomIn: zoomInBtn
+        })
+    }
+
+    handleZoomOut(zoomOutBtn) {
+        this.setState({
+            currentZoomOut: zoomOutBtn
+        })
+    }
+
+    handleZoomToFit(zoomToFitBtn) {
+        this.setState({
+            currentZoomToFit: zoomToFitBtn
+        })
+    }
+
+    // Message after Changing tasks
 
     addMessage(message) {
         let messages = this.state.messages.slice();
@@ -102,15 +199,47 @@ class Page extends Component {
         return(
             <div>
                 <Toolbar
-                    zoom={this.state.currentZoom}
-                    onZoomChange={this.handleZoomChange}
-                    //onZoomFit={this.handleToggleMode}
+                    undoBtn={this.state.currentUndo}
+                    redoBtn={this.state.currentRedo}
+                    fullscreenBtn={this.state.currentFullscreen}
+                    collapseAllBtn={this.state.currentCollapseAll}
+                    expandAllBtn={this.state.currentExpandAll}
+                    toPDFBtn={this.state.currentToPDF}
+                    toPNGBtn={this.state.currentToPNG}
+                    toExcelBtn={this.state.currentToExcel}
+                    toMSProjectBtn={this.state.currentToMSProject}
+                    zoomInBtn={this.state.currentZoomIn}
+                    zoomOutBtn={this.state.currentZoomOut}
+                    zoomToFItBtn={this.state.currentZoomToFit}
+
+                    onUndo={this.handleUndo}
+                    onRedo={this.handleRedo}
+                    onFullscreen={this.handleFullscreen}
+                    onCollapseAll={this.handleCollapseAll}
+                    onExpandAll={this.handleExpandAll}
+                    onToPDF={this.toPDF}
+                    onToPNG={this.toPNG}
+                    onToExcel={this.toExcel}
+                    onToMSProject={this.toMSProject}
+                    onZoomIn={this.handleZoomIn}
+                    onZoomOut={this.handleZoomOut}
+                    onZoomToFit={this.handleZoomToFit}
                 />
                 <div className="gantt_container" style={{"width":"100%", "height":"100vh"}}>
                     <Gantt
                         tasks={projects_milestones_critical}
-                        zoom={this.state.currentZoom}
-                        //toggleMode={this.state.handleToggleMode}
+                        undoBtn={this.state.currentUndo}
+                        redoBtn={this.state.currentRedo}
+                        fullscreenBtn={this.state.currentFullscreen}
+                        collapseAllBtn={this.state.currentCollapseAll}
+                        expandAllBtn={this.state.currentExpandAll}
+                        toPDFBtn={this.state.currentToPDF}
+                        toPNGBtn={this.state.currentToPNG}
+                        toExcelBtn={this.state.currentToExcel}
+                        toMSProjectBtn={this.state.currentToMSProject}
+                        zoomInBtn={this.state.currentZoomIn}
+                        zoomOutBtn={this.state.currentZoomOut}
+                        zoomToFitBtn={this.state.currentZoomToFit}
                         onTaskUpdated={this.logTaskUpdate}
                         onLinkUpdated={this.logLinkUpdate}
                     />
@@ -125,3 +254,10 @@ class Page extends Component {
 }
 
 export default Page;
+
+/* dans <Toolbar>
+zoom={this.state.currentZoom}
+                    onZoomChange={this.handleZoomChange}
+
+                    zoom={this.state.currentZoom} // dans <gantt>
+                    */
