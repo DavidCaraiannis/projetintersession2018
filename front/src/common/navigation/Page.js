@@ -28,9 +28,9 @@ class Page extends Component {
                 <Responsive as={Segment} inverted minWidth={769}>
                     <nav className="navbar navbar-expand-lg navbar-dark bg-blue">
                         <Container>
-                            <Menu.Item as={Link} to="/" replace>Home</Menu.Item>
-                            <Menu.Item as={NavLink} to="/project">Project</Menu.Item>
-                            <Menu.Item as={NavLink} to="/gantt">Gantt</Menu.Item>
+                            <Menu.Item id="home-btn" as={Link} to="/" replace>Home</Menu.Item>
+                            <Menu.Item id="project-btn" as={NavLink} to="/project">Project</Menu.Item>
+                            <Menu.Item id="gantt-btn" as={NavLink} to="/gantt">Gantt</Menu.Item>
                             <Menu.Menu>
                                 {this.props.isAuthenticated
                                     ?<nav className='bounceIn animated'>

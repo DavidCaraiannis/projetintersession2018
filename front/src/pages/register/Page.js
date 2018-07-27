@@ -101,7 +101,7 @@ class Page extends Component {
         }
         const {errors} = this.state;
         return (
-            <div>
+            <div className='register-account'>
                 <Segment className='page-loader' style={{display: this.state.isLoading ? 'block' : 'none'}}>
                     <Dimmer active inverted>
                         <Loader size='large'>Registering...</Loader>
@@ -111,11 +111,11 @@ class Page extends Component {
                 <Grid
                     textAlign='center'
                     verticalAlign='middle'
-                    className='login-form cardRegister'
+                    className='login-form'
                 >
                     <Grid.Column style={{maxWidth: '450px'}}>
-                        <Header as='h2' color='teal' textAlign='center'>
-                            Register for new account
+                        <Header id='title-register' as='h2' textAlign='center'>
+                            <span>Register</span> for new account
                         </Header>
                         {this.state.responseError.isError && <Message negative>
                             <Message.Content>
@@ -137,9 +137,11 @@ class Page extends Component {
                                     containerClass="active-cyan-2 mt-0 mb-4 icon-position"
                                     onChange={this.handleChange}
                                 />
-                                {errors.has('name') && <Header size='tiny' className='custom-error' color='red'>
+                                {errors.has('name') &&
+                                <Header id='errorNameMsg' size='tiny' className='custom-error' color=''>
                                     {errors.first('name')}
                                 </Header>}
+
                                 <Input
                                     icon='user'
                                     iconposition='left'
@@ -148,9 +150,11 @@ class Page extends Component {
                                     containerClass="active-cyan-2 mt-0 mb-4 icon-position"
                                     onChange={this.handleChange}
                                 />
-                                {errors.has('surname') && <Header size='tiny' className='custom-error' color='red'>
+                                {errors.has('surname') &&
+                                <Header id='errorSurnameMsg' size='tiny' className='custom-error' color=''>
                                     {errors.first('surname')}
                                 </Header>}
+
                                 <Input
                                     icon='envelope'
                                     iconposition='left'
@@ -159,9 +163,11 @@ class Page extends Component {
                                     containerClass="active-cyan-2 mt-0 mb-4 icon-position"
                                     onChange={this.handleChange}
                                 />
-                                {errors.has('email') && <Header size='tiny' className='custom-error' color='red'>
+                                {errors.has('email') &&
+                                <Header id='errorMailMsg' size='tiny' className='custom-error' color=''>
                                     {errors.first('email')}
                                 </Header>}
+
                                 <Input
                                     icon='lock'
                                     iconPosition='left'
@@ -171,9 +177,11 @@ class Page extends Component {
                                     containerClass="active-cyan-2 mt-0 mb-4 icon-position"
                                     onChange={this.handleChange}
                                 />
-                                {errors.has('password') && <Header size='tiny' className='custom-error' color='red'>
+                                {errors.has('password') &&
+                                <Header id='errorPassMsg' size='tiny' className='custom-error' color=''>
                                     {errors.first('password')}
                                 </Header>}
+
                                 <Input
                                     icon='refresh'
                                     iconPosition='left'
@@ -184,14 +192,15 @@ class Page extends Component {
                                     onChange={this.handleChange}
                                 />
                                 {errors.has('password_confirmation') &&
-                                <Header size='tiny' className='custom-error' color='red'>
+                                <Header id='errorPassConfirmMsg' size='tiny' className='custom-error' color=''>
                                     {errors.first('password_confirmation')}
                                 </Header>}
-                                <Button color='elegant' size='md' style={style} onClick={this.handleSubmit}>Register</Button>
+
+                                <Button id='register-page-button' color='elegant' size='md' style={style} onClick={this.handleSubmit}>Register</Button>
                             </Segment>
                         </Form>
-                        <Message>
-                            Already register ? <Link to='/login' replace>Login</Link>
+                        <Message id='already-register'>
+                            Already register ?&nbsp; <Link to='/login' replace>Login</Link>
                         </Message>
                     </Grid.Column>
                 </Grid>

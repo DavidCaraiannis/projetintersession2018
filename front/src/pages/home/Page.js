@@ -30,7 +30,9 @@ class Page extends Component {
                 </Segment>
                 <div className="course-tour">
                     <Container style={{padding: '2em 0em'}}>
-                        <Header as="h4" style={{color: '#005d7bc7'}} content="The Ganttesque Management"/>
+                        <Header id='subtitle-home' as="h4" style={{color: '#005d7bc7'}}>
+                        The <span>Ganttesque</span> Management
+                        </Header>
                         <p style={{color: 'gray'}} >Since 2018</p>
                     </Container>
                 </div>

@@ -2,6 +2,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: sans-serif;
+    background-image: #f9f9f9;
 }
 
 /* ------- HOME PAGE ------- */
@@ -23,27 +24,6 @@ body {
     margin-top: 15px;
 }
 
-.cardRegister {
-    margin: auto;
-    border-radius: 15px;
-    text-align: left;
-}
-
-.card-project {
-    margin: 20px;
-    height: 380px;
-    max-width: 300px;
-    min-width: 300px;
-}
-
-.viewglobal {
-    display: flex;
-    flex-direction: row;
-    text-align: center;
-    padding-top: 25px;
-    justify-content: center;
-    flex-wrap: wrap;
-}
 
 .card-body {
     height: 130px;
@@ -53,6 +33,50 @@ body {
     background-image:linear-gradient(60deg, lightblue, darkblue);
 }
 
+h4#subtitle-home span {
+    color: royalblue;
+}
+
+a#home-btn:hover,
+a#project-btn:hover,
+a#gantt-btn:hover {
+    background: -webkit-linear-gradient(60deg, lightblue, darkblue);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+a#home-btn,
+a#project-btn,
+a#gantt-btn {
+    position: relative;
+}
+
+a#home-btn::before,
+a#project-btn::before,
+a#gantt-btn::before {
+    top: 36px;
+    content: '';
+    position: absolute;
+    bottom: 0%;
+    left: -65px;
+    width: 10em;
+    height: 1px;
+    background: blue;
+    display: block;
+    transform-origin: right top;
+    transform: scale(0, 1);
+    transition: transform 0.4s cubic-bezier(1, 0, 0, 1);
+}
+
+a#home-btn:hover::before,
+a#project-btn:hover::before,
+a#gantt-btn:hover::before {
+    transform-origin: left top;
+    transform: scale(1, 1)
+}
+
+
+
 
 
 /* ------- LOGIN CSS ------- */
@@ -60,7 +84,10 @@ body {
 .login-account {
     display: flex;
     justify-content: center;
-    margin-top: 10em;
+    margin-top: 5em;
+}
+h2#title-login {
+    margin-bottom: 16%;
 }
 
 #title-login span {
@@ -85,17 +112,96 @@ body {
     justify-content: center;
     margin-top: 10px;
 }
+
+/* ------- FORGOT PASSWORD ------- */
+
+.forgot-password {
+    display: flex;
+    justify-content: center;
+    margin-top: 5em;
+}
+
+h2#title-forgotPass {
+    margin-bottom: 16%;
+}
+
+#title-forgotPass span {
+    color: royalblue;
+}
+
+#reset-password-button {
+    display: flex;
+    margin-left: 10px;
+    left: 22%;
+}
+
+#new-to-us-forgotPassword {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+/* ------- REGISTER CSS ------- */
+
+.register-account {
+    display: flex;
+    justify-content: center;
+    margin-top: 5em;
+}
+
+h2#title-register {
+    margin-bottom: 15%;
+}
+
+#title-register span {
+    color: royalblue;
+}
+
+#register-page-button {
+    display: flex;
+    margin-left: 10px;
+    left: 33%;
+}
+
+#already-register {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
 /* ------- MESSAGE ERROR ------- */
 
-#errorMailMsg {
+
+#errorMailMsg,
+#errorPassMsg,
+#errorNameMsg,
+#errorSurnameMsg,
+#errorPassConfirmMsg {
     color: red;
 }
 
-#errorPassMsg {
-    color: red;
-}
 
 /* ------- PROJECT PAGE ------- */
+
+.viewglobal {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    padding-top: 4em;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.card-project {
+    margin: 20px;
+    height: 380px;
+    max-width: 300px;
+    min-width: 300px;
+}
+
+#img-project:hover {
+    opacity: 0.6;
+}
 
 Button.add-project-btn {
     border-radius: 50%;
@@ -106,16 +212,11 @@ Button.add-project-btn {
     font-size: 2rem;
     padding: 0;
     background-color: darkred;
+    position: fixed;
+    top: 55px;
+    z-index: 1;
+    left: 0;
 }
-
-
-
-
-
-
-
-
-
 
 
 /* -------  CSS APP.SCSS   ------- */
@@ -222,7 +323,7 @@ Button.add-project-btn {
     }
     .page-header {
         min-height: 182px !important;
-        background-color: #000;
+        /* background-color: #000; */
         background-size: 100% !important;
         display: flex;
         justify-content: center;

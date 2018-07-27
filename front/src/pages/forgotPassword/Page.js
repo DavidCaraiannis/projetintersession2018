@@ -106,8 +106,7 @@ class Page extends Component {
         const {errors} = this.state;
 
         return (
-            <div>
-                <PageHeader heading="login"/>
+            <div className="forgot-password">
                 <Segment className='page-loader' style={{display: this.state.isLoading ? 'block' : 'none'}}>
                     <Dimmer active inverted>
                         <Loader size='large'>Resetting Password...</Loader>
@@ -120,8 +119,8 @@ class Page extends Component {
                     className='login-form'
                 >
                     <Grid.Column style={{maxWidth: '450px'}}>
-                        <Header as='h2' color='teal' textAlign='center'>
-                            Reset your password
+                        <Header id='title-forgotPass' as='h2' textAlign='center'>
+                            <span>Reset</span> your password
                         </Header>
                         {this.state.responseError.isError && <Message negative>
                             <Message.Content>
@@ -147,17 +146,22 @@ class Page extends Component {
                                 {errors.has('email') && <Header size='tiny' className='custom-error' color='red'>
                                     {errors.first('email')}
                                 </Header>}
-                                <Button color='elegant' size='md' onClick={this.handleSubmit}>Reset Password</Button>
+                                <Button id='reset-password-button' color='elegant' size='md' style={style} onClick={this.handleSubmit}>Reset Password</Button>
                             </Segment>
                         </Form>
-                        <Message>
-                            New to us? <Link to='/register' replace>Register</Link>
+                        <Message id="new-to-us-forgotPassword">
+                            New to us ?&nbsp; <Link to='/register' replace>Register</Link>
                         </Message>
                     </Grid.Column>
                 </Grid>
             </div>
         );
     }
+}
+
+const style={
+    borderRadius: 15,
+    'backgroundImage':'linear-gradient(60deg, lightblue, darkblue)'
 }
 
 Page.propTypes = {
