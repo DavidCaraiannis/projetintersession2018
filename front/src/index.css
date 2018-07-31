@@ -218,6 +218,13 @@ Button.add-project-btn {
     left: 0;
 }
 
+.project-be-create {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
 
 /* -------  CSS APP.SCSS   ------- */
 

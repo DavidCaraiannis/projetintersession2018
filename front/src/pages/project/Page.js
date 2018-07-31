@@ -1,42 +1,110 @@
 import React from 'react';
-import { Button, Card, CardBody, CardImage, CardTitle, CardText } from 'mdbreact';
+import {
+    Button,
+    Card,
+    CardBody,
+    CardImage,
+    CardTitle,
+    CardText,
+    Modal,
+    ModalBody,
+    ModalHeader,
+    ModalFooter,
+    Container,
+    Input   } from 'mdbreact';
 
 class Project extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            itemArray: []
+            itemArray: [],
         };
         this.createProject = this.createProject.bind(this);
+        this.randomImage = this.randomImage.bind(this);
+        this.toggle = this.toggle.bind(this);
 
     }
 
-    createProject() {
+    toggle() {
+        this.setState({
+            modal: !this.state.modal
+        });
+    }
+
+
+
+    createProject(event) {
+        event.preventDefault();
         const item = this.state.itemArray;
-        const title = ''
-        const text = ''
-        item.push({title, text})
+        const image = this.randomImage();
+        const title = document.getElementById('title').defaultValue;
+        const text = document.getElementById('text').defaultValue;
+        item.push({title, text, image})
         this.setState({itemArray: item})
+
+    };
+
+
+
+
+// Array for random link
+    randomImage() {
+        const rdmImg = [
+            "https://cdn.dribbble.com/users/130603/screenshots/3194725/catgod_800x600.gif",
+            "https://cdn.dribbble.com/users/256781/screenshots/2933600/designers_dribble_06.gif",
+            "https://cdn.dribbble.com/users/11867/screenshots/3778710/circle_02.gif",
+            "https://cdn.dribbble.com/users/769413/screenshots/3719981/pigeons_-_cub_studio_-_doingness.gif",
+            "https://cdn.dribbble.com/users/43762/screenshots/3674284/ms-dir-dribbble-3.gif",
+            "https://cdn.dribbble.com/users/43762/screenshots/3674277/ms-dir-dribbble-2.gif",
+            "https://cdn.dribbble.com/users/43762/screenshots/3674291/ms-dir-dribbble-4.gif",
+            "https://cdn.dribbble.com/users/43762/screenshots/2391583/open-uri20151207-3-ku974m",
+            "https://cdn.dribbble.com/users/43762/screenshots/1643630/motherboard-wip-2.gif",
+            "https://cdn.dribbble.com/users/43762/screenshots/1637863/motherboard-dribbble-wip.gif",
+            "https://cdn.dribbble.com/users/43762/screenshots/1972605/thefurrow_animation.gif",
+            "https://cdn.dribbble.com/users/43762/screenshots/2084826/zipcar---dribbble-2.gif",
+            "https://cdn.dribbble.com/users/43762/screenshots/2454534/open-uri20160113-3-qq0soq",
+            "https://cdn.dribbble.com/users/43762/screenshots/3831189/ui-loop-dribble.gif",
+            "https://cdn.dribbble.com/users/215249/screenshots/3471497/letigre_2.gif",
+            "https://cdn.dribbble.com/users/730703/screenshots/3653295/sludinajums.gif",
+        ];
+        return rdmImg[Math.floor(Math.random()*(rdmImg.length))];
     }
+
 
 
 
     render() {
         return (
             <div className="viewglobal">
-                <Button
-                    id="create-new-project"
-                    onClick={this.createProject}
-                    className="add-project-btn"
-                    label="submit"
-                    color="transparent"
-                    primary="true">+
-                </Button>
-                <div>
+                {/* PoPup for register Name and def of project */}
+                <Container>
+                    <Button
+                        id="create-new-project"
+                        onClick={this.toggle}
+                        className="add-project-btn"
+                        label="submit"
+                        color="transparent"
+                        primary="true">+
+                    </Button>
+                    <Modal isOpen={this.state.modal} toggle={this.toggle}>
+                        <ModalHeader toogle={this.toggle}>
+                            <Input name="title" id='title' label='Enter your title project'/>
+                        </ModalHeader>
+                        <ModalBody>
+                            <Input name="text" id='text' label='Enter your description'/>
+                        </ModalBody>
+                        <ModalFooter>
+                            <Button  color='secondary' onClick={this.toggle}>Close</Button>{' '}
+                            <Button color='primary' onClick={this.createProject}>Save</Button>
+                        </ModalFooter>
+                    </Modal>
+                </Container>
+
+                <div className="project-be-create">
                     {this.state.itemArray.map((item, index) => {
                         return (
                             <Card className="card-project">
-                                <CardImage id={index} className="img-project img" width="100%" src="https://cdn.dribbble.com/users/256781/screenshots/2933600/designers_dribble_06.gif" waves />
+                                <CardImage id={index} className="img-project img" width="100%" src={item.image} waves />
                                 <CardBody>
                                     <CardTitle>{item.title}</CardTitle>
                                     <CardText>{item.text}</CardText>
@@ -46,38 +114,6 @@ class Project extends React.Component {
                         )
                     })}
                 </div>
-                {/* <Card className="card-project">
-                    <CardImage id="img-project" className="img" width="100%" src="https://cdn.dribbble.com/users/256781/screenshots/2933600/designers_dribble_06.gif" waves />
-                    <CardBody>
-                        <CardTitle> Projet Zero </CardTitle>
-                        <CardText>Projet sur plusieurs semaines.</CardText>
-                        <Button className="project-btn" href="#">Projet</Button>
-                    </CardBody>
-                </Card> */}
-                {/* <Card className="card-project">
-                    <CardImage id="img-project" className="img" width="100%" src="https://cdn.dribbble.com/users/43762/screenshots/3674249/ms-dir-dribbble-1.gif" waves />
-                    <CardBody>
-                        <CardTitle> Projet Zero </CardTitle>
-                        <CardText>Projet sur plusieurs semaines.</CardText>
-                        <Button className="project-btn"  href="#">Projet</Button>
-                    </CardBody>
-                </Card>
-                <Card className="card-project">
-                    <CardImage id="img-project" className="img" width="100%" src="https://cdn.dribbble.com/users/43762/screenshots/3674284/ms-dir-dribbble-3.gif" waves />
-                    <CardBody>
-                        <CardTitle> Projet Zero </CardTitle>
-                        <CardText>Projet sur plusieurs semaines.</CardText>
-                        <Button className="project-btn"  href="#">Projet</Button>
-                    </CardBody>
-                </Card>
-                <Card className="card-project">
-                    <CardImage id="img-project" className="img" width="100%" src="https://cdn.dribbble.com/users/130603/screenshots/4449444/plants_03_dribbble.gif" waves />
-                    <CardBody>
-                        <CardTitle> Projet Zero </CardTitle>
-                        <CardText>Projet sur plusieurs semaines.</CardText>
-                        <Button className="project-btn"  href="#">Projet</Button>
-                    </CardBody>
-                </Card> */}
             </div>
         )
     }
