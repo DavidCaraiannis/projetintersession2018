@@ -63,7 +63,6 @@ class Gantt extends Component {
         ]);
         gantt.serverList("type", [
             {key: 1, label: "task"},
-            {key: 2, label: "project"},
             {key: 3, label: "milestone"},
         ]);
         gantt.serverList("priority", [
@@ -94,11 +93,6 @@ class Gantt extends Component {
             {name: "time", type: "duration", map_to: "auto"}
         ];
 
-        gantt.config.lightbox.project_sections = [
-            {name: "description", height: 70, map_to: "text", type: "textarea", focus: true},
-
-            {name: "time", type: "duration", readonly:true, map_to: "auto"}
-        ];
         gantt.config.lightbox.milestone_sections = [
             {name: "description", height: 70, map_to: "text", type: "textarea", focus: true},
             {name: "type", type: "select", map_to: "type", filter: function(name, value){
