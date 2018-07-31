@@ -1,6 +1,5 @@
 /*global gantt*/
 import React, { Component } from 'react';
-import Gantt from './Gantt';
 
 class ZoomGantt extends Component {
 

@@ -4,18 +4,15 @@ import 'dhtmlx-gantt';
 import 'dhtmlx-gantt/codebase/dhtmlxgantt.css';
 import 'dhtmlx-gantt/codebase/dhtmlxgantt.js';
 import 'dhtmlx-gantt/codebase/ext/dhtmlxgantt_csp';
-import 'dhtmlx-gantt/codebase/ext/dhtmlxgantt_fullscreen';
 import 'dhtmlx-gantt/codebase/ext/dhtmlxgantt_undo';
 import 'dhtmlx-gantt/codebase/ext/dhtmlxgantt_marker';
+import 'dhtmlx-gantt/codebase/ext/dhtmlxgantt_smart_rendering';
 import ZoomGantt from './ZoomGantt';
-//import Zoom from "./Zoom";
-//import ZoomToFit from "./ZoomToFit";
 
 class Gantt extends Component {
     constructor(props) {
         super(props);
     }
-
 
     setDuration() {
         gantt.config.duration_unit = 'hour';
@@ -41,6 +38,17 @@ class Gantt extends Component {
             if (!gantt.isWorkTime(date))
                 return "week_end";
             return "";
+        };
+
+        gantt.templates.scale_cell_class = function (date) {
+            if (date.getDay() == 0 || date.getDay() == 6) {
+                return "weekend";
+            }
+        };
+        gantt.templates.task_cell_class = function (item, date) {
+            if (date.getDay() == 0 || date.getDay() == 6) {
+                return "weekend";
+            }
         };
 
     }
@@ -81,10 +89,24 @@ class Gantt extends Component {
         gantt.config.lightbox.sections = [
             {name: "description", height: 70, map_to: "text", type: "textarea", focus: true},
             {name: "type", type: "select", map_to: "type_id", options:gantt.serverList("type")},
-            {name:"owner", map_to:"owner_id", type:"multiselect", options:gantt.serverList("people")},
+            {name:"owner", map_to:"owner_id", type:"select", options:gantt.serverList("people")},
             {name: "priority", type: "select", map_to: "priority", options:gantt.serverList("priority")},
             {name: "time", type: "duration", map_to: "auto"}
         ];
+
+        gantt.config.lightbox.project_sections = [
+            {name: "description", height: 70, map_to: "text", type: "textarea", focus: true},
+
+            {name: "time", type: "duration", readonly:true, map_to: "auto"}
+        ];
+        gantt.config.lightbox.milestone_sections = [
+            {name: "description", height: 70, map_to: "text", type: "textarea", focus: true},
+            {name: "type", type: "select", map_to: "type", filter: function(name, value){
+                    return !!(value !== gantt.config.types.project);
+                }},
+            {name: "time", type: "duration", map_to: "auto"}
+        ];
+
     }
 
     /*setZoom(value){
@@ -223,71 +245,25 @@ class Gantt extends Component {
     //Buttons on navbar
 
     handleZoomIn() {
-        ZoomGantt.disable();
-        ZoomGantt.zoomIn();
-        ZoomGantt.refreshZoomBtns();
-        ZoomGantt.toggleZoomToFitBtn();
+        ZoomGantt.disable;
+        ZoomGantt.zoomIn;
+        ZoomGantt.refreshZoomBtns;
+        ZoomGantt.toggleZoomToFitBtn;
     }
 
     handleZoomOut() {
-        ZoomGantt.disable();
-        ZoomGantt.zoomOut();
-        ZoomGantt.refreshZoomBtns();
-        ZoomGantt.toggleZoomToFitBtn();
+        ZoomGantt.disable;
+        ZoomGantt.zoomOut;
+        ZoomGantt.refreshZoomBtns;
+        ZoomGantt.toggleZoomToFitBtn;
     }
 
     handleZoomToFit() {
-        ZoomGantt.deactivate();
-        ZoomGantt.toggle();
-        ZoomGantt.toggleZoomToFitBtn();
-        ZoomGantt.refreshZoomBtns();
+        ZoomGantt.deactivate;
+        ZoomGantt.toggle;
+        ZoomGantt.toggleZoomToFitBtn;
+        ZoomGantt.refreshZoomBtns;
     }
-
-    handleUndo() {
-        gantt.undo();
-        ZoomGantt.refreshUndoBtns();
-    }
-
-    handleRedo() {
-        gantt.redo();
-        ZoomGantt.refreshUndoBtns();
-    }
-
-    handleFullscreen() {
-        gantt.expand();
-    }
-
-    handleCollapseAll() {
-        gantt.eachTask(function(task){
-            task.$open = false;
-        });
-        gantt.render();
-
-    }
-
-    handleExpandAll() {
-        gantt.eachTask(function(task){
-            task.$open = true;
-        });
-        gantt.render();
-    }
-
-    /*toPDF() {
-        gantt.exportToPDF();
-    }
-
-    toPNG() {
-        gantt.exportToPNG();
-    }
-
-    toExcel() {
-        gantt.exportToExcel();
-    }
-
-    toMSProject() {
-        gantt.exportToMSProject();
-    }*/
-
 
     shouldComponentUpdate(nextProps ){
         return this.props.zoom !== nextProps.zoom;
@@ -338,12 +314,41 @@ class Gantt extends Component {
                 this.props.onLinkUpdated(id, 'deleted');
             }
         });
+
+        gantt.attachEvent("onParse", function () {
+            gantt.eachTask(function (task) {
+                if (gantt.hasChild(task.id)) {
+                    task.type = gantt.config.types.project;
+                    gantt.updateTask(task.id);
+                } else if (task.duration === 0) {
+                    task.type = gantt.config.types.milestone;
+                    gantt.updateTask(task.id);
+                }
+            });
+        });
     }
 
     componentDidMount() {
         this.setLightbox();
         this.setDuration();
         this.initGanttEvents();
+        gantt.templates.task_text=function(start,end,task){
+            if (task.people) {
+                var users = "";
+                for(var i = 0; i < task.people.length; i++) {
+                    if (i === 0) {
+                        users += task.people[i];
+                    } else {
+                        users += ", ";
+                        users += task.people[i];
+                    }
+                }
+                return task.text+",<b> for : </b> "+ users;
+            } else {
+                return task.text;
+            }
+
+        };
         gantt.init(this.ganttContainer);
         gantt.parse(this.props.tasks);
     }
@@ -354,15 +359,6 @@ class Gantt extends Component {
         this.handleZoomIn(this.props.zoomInBtn);
         this.handleZoomOut(this.props.zoomOutBtn);
         this.handleZoomToFit(this.props.zoomToFitBtn);
-        this.toPDF(this.props.toPDFBtn);
-        this.toPNG(this.props.toPNGBtn);
-        this.toExcel(this.props.toExcelBtn);
-        this.toMSProject(this.props.toMSProjectBtn);
-        this.handleUndo(this.props.undoBtn);
-        this.handleRedo(this.props.redoBtn);
-        this.handleFullscreen(this.props.fullscreenBtn);
-        this.handleCollapseAll(this.props.collapseAllBtn);
-        this.handleExpandAll(this.props.expandAllBtn);
         return (
             <div
                 ref={(input) => { this.ganttContainer = input }}

@@ -12,3 +12,8 @@ let mix = require('laravel-mix');
  */
 
 mix.react('index.js');
+/*mix.config(module.exports = {
+    externals: {
+        export: 'export'
+    }
+});*/

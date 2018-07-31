@@ -2,6 +2,9 @@
 import React, { Component } from 'react';
 import { Button, Container, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'mdbreact';
 import { Menu, Responsive, Segment} from "semantic-ui-react";
+import 'dhtmlx-gantt/codebase/ext/dhtmlxgantt_undo';
+import 'dhtmlx-gantt/codebase/ext/dhtmlxgantt_fullscreen';
+import './api';
 
 export default class Toolbar extends Component {
     constructor(props){
@@ -13,12 +16,10 @@ export default class Toolbar extends Component {
         this.handleZoomOut=this.handleZoomOut.bind(this);
         this.handleZoomToFit=this.handleZoomToFit.bind(this);
         this.handleFullscreen=this.handleFullscreen.bind(this);
-        this.handleCollapseAll=this.handleCollapseAll.bind(this);
-        this.handleExpandAll=this.handleExpandAll.bind(this);
-        this.toPDF=this.toPDF.bind(this);
-        this.toPNG=this.toPNG.bind(this);
-        this.toExcel=this.toExcel.bind(this);
-        this.toMSProject=this.toMSProject.bind(this);
+        this.handleToPDF=this.handleToPDF.bind(this);
+        this.handleToPNG=this.handleToPNG.bind(this);
+        this.handleToExcel=this.handleToExcel.bind(this);
+        this.handleToMSProject=this.handleToMSProject.bind(this);
     }
 
     /*handleZoomChange(e) {
@@ -27,68 +28,159 @@ export default class Toolbar extends Component {
         }
     }*/
 
-    handleUndo(e) {
-        if (this.props.onUndo) {
-            this.props.onUndo(e.target.value);
+    handleUndo() {
+        gantt.undo();
+    }
+
+    handleRedo() {
+        gantt.redo();
+    }
+
+    handleZoomIn(e) {
+        if (this.props.onZoomIn) {
+            this.props.onZoomIn(e.target.value);
         }
     }
-    handleRedo() {
-        this.props.onRedo;
+
+    handleZoomOut(e) {
+        if (this.props.onZoomOut) {
+            this.props.onZoomOut(e.target.value);
+        }
     }
-    handleZoomIn() {
-        this.props.onZoomIn;
+
+    handleZoomToFit(e) {
+        if (this.props.onZoomToFit) {
+            this.props.onZoomToFit(e.target.value);
+        }
     }
-    handleZoomOut() {
-        this.props.onZoomOut;
-    }
-    handleZoomToFit() {
-        this.props.onZoomToFit;
-    }
+
     handleFullscreen() {
-        this.props.onFullscreen;
+            if (!gantt.getState().fullscreen) {
+                // expanding the gantt to full screen
+                gantt.expand();
+            }
+            else {
+                // collapsing the gantt to the normal mode
+                gantt.collapse();
+            }
     }
-    handleCollapseAll() {
-        this.props.onCollapseAll;
 
-    }
-    handleExpandAll() {
-        this.props.onExpandAll;
-    }
+    handleToPDF() {
+        gantt.exportToPDF({ callback:show_result });
+        function show_result(info) {
+            if (!info)
+                gantt.message({
+                    text: "Server error",
+                    type: "error",
+                    expire: -1
+                });
+            else
+                gantt.message({
+                    text: "Click <a href='" + info.url + "'>here</a> to save",
+                    expire: -1
+                });
+        }
 
-    toPDF() {
-        this.props.onToPDF;
+        gantt.templates.task_text = function (s, e, task) {
+            return "Export " + task.text;
+        };
+        gantt.config.columns[0].template = function (obj) {
+            return obj.text + " -";
+        };
     }
-    toPNG() {
-        this.props.onToPNG;
+    handleToPNG() {
+        gantt.exportToPNG({ callback:show_result });
+        function show_result(info) {
+            if (!info)
+                gantt.message({
+                    text: "Server error",
+                    type: "error",
+                    expire: -1
+                });
+            else
+                gantt.message({
+                    text: "Click <a href='" + info.url + "'>here</a> to save",
+                    expire: -1
+                });
+        }
+
+        gantt.templates.task_text = function (s, e, task) {
+            return "Export " + task.text;
+        };
+        gantt.config.columns[0].template = function (obj) {
+            return obj.text + " -";
+        };
     }
-    toExcel() {
-        this.props.onToExcel;
+    handleToExcel() {
+        gantt.exportToExcel({ callback:show_result });
+        function show_result(info) {
+            if (!info)
+                gantt.message({
+                    text: "Server error",
+                    type: "error",
+                    expire: -1
+                });
+            else
+                gantt.message({
+                    text: "Click <a href='" + info.url + "'>here</a> to save",
+                    expire: -1
+                });
+        }
+        gantt.templates.task_text = function (s, e, task) {
+            return "Export " + task.text;
+        };
+        gantt.config.columns[0].template = function (obj) {
+            return obj.text;
+        };
+        gantt.config.fit_tasks = true;
     }
-    toMSProject() {
-        this.props.onToMSProject;
+    handleToMSProject() {
+        gantt.exportToMSProject({ callback:show_result });
+        function show_result(info) {
+            if (!info)
+                gantt.message({
+                    text: "Server error",
+                    type: "error",
+                    expire: -1
+                });
+            else
+                gantt.message({
+                    text: "Click <a href='" + info.url + "'>here</a> to save",
+                    expire: -1
+                });
+        }
+        gantt.templates.task_text = function (s, e, task) {
+            return "Export " + task.text;
+        };
+        gantt.config.columns[0].template = function (obj) {
+            return obj.text;
+        };
+        gantt.config.fit_tasks = true;
     }
 
     render() {
         return (
             <div>
                 <Responsive as={Segment} inverted minWidth={769}>
-                    <nav className="navbar navbar-expand-lg navbar-dark bg-blue">
+                    <nav className="navbar navbar-expand-lg">
                         <Container className="gantt-controls">
-                            <Menu.Item className="gantt-menu-item" data-action="collapseAll">
-                                <Button onClick={this.handleCollapseAll}>Collapse All</Button>
-                            </Menu.Item>
-                            <Menu.Item className="gantt-menu-item gantt-menu-item-last" data-action="expandAll">
-                                <Button onClick={this.handleExpandAll}>Expand All</Button>
-                            </Menu.Item>
                             <Menu.Item className="gantt-menu-item" data-action="undo">
                                 <Button onClick={this.handleUndo}>Undo</Button>
                             </Menu.Item>
                             <Menu.Item className="gantt-menu-item gantt-menu-item-last" data-action="redo">
                                 <Button onClick={this.handleRedo}>Redo</Button>
                             </Menu.Item>
-                            <Menu.Item className="gantt-menu-item gantt-menu-item-right" data-action="fullscreen">
-                                <Button onClick={this.handleFullscreen}>Fullscreen</Button>
-                            </Menu.Item>
+                            <Dropdown>
+                            <DropdownToggle caret color="primary" className="gantt-menu-item gantt-menu-item-right gantt-menu-item-last">
+                                Export
+                            </DropdownToggle>
+                            <DropdownMenu className="gantt-controls">
+                                <DropdownItem className="gantt-menu-item" data-action="toPDF" onClick={this.handleToPDF}>To PDF</DropdownItem>
+                                <DropdownItem className="gantt-menu-item" data-action="toPNG" onClick={this.handleToPNG}>To PNG</DropdownItem>
+                                <DropdownItem className="gantt-menu-item" data-action="toExcel" onClick={this.handleToExcel}>To Excel</DropdownItem>
+                                <DropdownItem className="gantt-menu-item" data-action="toMSProject" onClick={this.handleToMSProject}>To MSProject</DropdownItem>
+                            </DropdownMenu>
+                            </Dropdown>
                             <Menu.Item className="gantt-menu-item gantt-menu-item-right" data-action="zoomIn">
                                 <Button onClick={this.handleZoomIn}>Zoom In</Button>
                             </Menu.Item>
@@ -98,17 +190,10 @@ export default class Toolbar extends Component {
                             <Menu.Item className="gantt-menu-item gantt-menu-item-right gantt-menu-item-last" data-action="zoomToFit">
                                 <Button onClick={this.handleZoomToFit}>Zoom to Fit</Button>
                             </Menu.Item>
-                            <Dropdown>
-                            <DropdownToggle caret color="primary" className="gantt-menu-item gantt-menu-item-right gantt-menu-item-last">
-                                Export
-                            </DropdownToggle>
-                                <DropdownMenu className="gantt-controls">
-                                    <DropdownItem className="gantt-menu-item" data-action="toPDF" onClick={this.toPDF}>To PDF</DropdownItem>
-                                    <DropdownItem className="gantt-menu-item" data-action="toPNG" onClick={this.toPNG}>To PNG</DropdownItem>
-                                    <DropdownItem className="gantt-menu-item" data-action="toExcel" onClick={this.toExcel}>To Excel</DropdownItem>
-                                    <DropdownItem className="gantt-menu-item" data-action="toMSProject" onClick={this.toMSProject}>To MSProject</DropdownItem>
-                                </DropdownMenu>
-                            </Dropdown>
+                            <Menu.Item className="gantt-menu-item gantt-menu-item-right gantt-menu-item-last" id="fullscreen_button">
+                                <Button onClick={this.handleFullscreen}>Fullscreen</Button>
+                            </Menu.Item>
+
                         </Container>
                     </nav>
                 </Responsive>
@@ -117,8 +202,6 @@ export default class Toolbar extends Component {
     }
 }
 
-//style="text-align: center;height: 40px;line-height: 40px;"
-//<Button onClick={this.toggleMode}>Zoom to fit</Button>
 
 /*
 * <nav>
