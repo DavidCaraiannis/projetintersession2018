@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import {
     Button,
     Card,
@@ -22,6 +23,7 @@ class Project extends React.Component {
         this.createProject = this.createProject.bind(this);
         this.randomImage = this.randomImage.bind(this);
         this.toggle = this.toggle.bind(this);
+        this.handleGantt = this.handleGantt.bind(this);
 
     }
 
@@ -39,12 +41,28 @@ class Project extends React.Component {
         const image = this.randomImage();
         const title = document.getElementById('title').defaultValue;
         const text = document.getElementById('text').defaultValue;
-        item.push({title, text, image})
-        this.setState({itemArray: item})
-
+        item.push({title, text, image});
+        this.setState({itemArray: item});
+        this.toggle();
     };
 
-
+    handleGantt(event) {
+        event.preventDefault();
+        debugger;
+        axios.get('/readProject')
+            .then(res => {
+                const project_id = res.data.id;
+                this.setState({project_id})
+            }
+        );
+        axios.post('/createGantt', {
+            project_id: this.project_id,
+        })
+            .then(res => {
+                console.log(res);
+            })
+            .catch()
+    }
 
 
 // Array for random link
@@ -87,7 +105,7 @@ class Project extends React.Component {
                         primary="true">+
                     </Button>
                     <Modal isOpen={this.state.modal} toggle={this.toggle}>
-                        <ModalHeader toogle={this.toggle}>
+                        <ModalHeader toggle={this.toggle}>
                             <Input name="title" id='title' label='Enter your title project'/>
                         </ModalHeader>
                         <ModalBody>
@@ -108,7 +126,7 @@ class Project extends React.Component {
                                 <CardBody>
                                     <CardTitle>{item.title}</CardTitle>
                                     <CardText>{item.text}</CardText>
-                                    <Button className="project-btn" href="#">Projet</Button>
+                                    <Button className="project-btn" onClick={this.handleGantt} href="/gantt">Projet</Button>
                                 </CardBody>
                             </Card>
                         )
