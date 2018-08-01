@@ -224,6 +224,11 @@ Button.add-project-btn {
     flex-wrap: wrap;
     justify-content: center;
 }
+
+#modal-body {
+    text-align: center;
+} 
+
 /* --------   GANTT PROJECT-------*/
 
 .weekend {
