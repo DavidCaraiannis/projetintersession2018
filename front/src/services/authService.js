@@ -1,15 +1,19 @@
 import Http from '../Http';
+import axios from 'axios';
 import * as action from '../store/actions';
 
 export function login(credentials) {
     return dispatch => (
         new Promise((resolve, reject) => {
-            Http.post('api/auth/login', credentials)
+            debugger;
+            axios.post('http://debecaan18/login', credentials)
                 .then(res => {
+                    debugger;
                     dispatch(action.authLogin(res.data));
                     return resolve();
                 })
                 .catch(err => {
+                    debugger;
                     const statusCode = err.response.status;
                     const data = {
                         error: null,
@@ -29,7 +33,7 @@ export function login(credentials) {
 export function resetPassword(credentials) {
     return dispatch => (
         new Promise((resolve, reject) => {
-            Http.post('../api/password/email', credentials)
+            axios.get('http://debecaan18/readUser', credentials)
                 .then(res => {
                     return resolve(res.data);
                 })
@@ -53,7 +57,7 @@ export function resetPassword(credentials) {
 export function updatePassword(credentials) {
     return dispatch => (
         new Promise((resolve, reject) => {
-            Http.post('../../api/password/reset', credentials)
+            axios.post('http://debecaan18/updateUser', credentials)
                 .then(res => {
                     const statusCode = res.data.status;
                     if (statusCode === 202) {
@@ -85,11 +89,14 @@ export function updatePassword(credentials) {
 export function register(credentials) {
     return dispatch => (
         new Promise((resolve, reject) => {
-            Http.post('api/auth/register', credentials)
+            debugger;
+            axios.post('http://debecaan18/createUser', credentials)
                 .then(res => {
+                    debugger;
                     return resolve(res.data);
                 })
                 .catch(err => {
+                    debugger;
                     const statusCode = err.response.status;
                     const data = {
                         error: null,

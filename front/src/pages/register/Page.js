@@ -14,7 +14,7 @@ class Page extends Component {
             surname: 'required|min:2',
             email: 'required|email',
             password: 'required|min:6',
-            password_confirmation: 'required|min:6|confirmed:password'
+            //password_confirmation: 'required|min:6|confirmed:password'
         });
         this.state = {
             credentials: {
@@ -22,7 +22,7 @@ class Page extends Component {
                 surname: '',
                 email: '',
                 password: '',
-                password_confirmation: ''
+                //password_confirmation: ''
             },
             responseError: {
                 isError: false,
@@ -62,8 +62,11 @@ class Page extends Component {
                         isLoading: true
                     });
                     this.submit(credentials);
+                } else {
+                    console.log('error');
+                    alert('error');
                 }
-            });
+            })
     }
 
     submit(credentials) {
@@ -170,7 +173,7 @@ class Page extends Component {
 
                                 <Input
                                     icon='lock'
-                                    iconPosition='left'
+                                    iconposition='left'
                                     name="password"
                                     label='Password'
                                     type='password'
@@ -182,21 +185,8 @@ class Page extends Component {
                                     {errors.first('password')}
                                 </Header>}
 
-                                <Input
-                                    icon='refresh'
-                                    iconPosition='left'
-                                    name="password"
-                                    label='Confirm your password'
-                                    type='password'
-                                    containerClass="active-cyan-2 mt-0 mb-4 icon-position"
-                                    onChange={this.handleChange}
-                                />
-                                {errors.has('password_confirmation') &&
-                                <Header id='errorPassConfirmMsg' size='tiny' className='custom-error' color=''>
-                                    {errors.first('password_confirmation')}
-                                </Header>}
-
                                 <Button id='register-page-button' color='elegant' size='md' style={style} onClick={this.handleSubmit}>Register</Button>
+
                             </Segment>
                         </Form>
                         <Message id='already-register'>
@@ -221,3 +211,17 @@ Page.propTypes = {
 };
 
 export default Page;
+
+/*<Input
+    icon='refresh'
+    iconposition='left'
+    name="password"
+    label='Confirm your password'
+    type='password'
+    containerClass="active-cyan-2 mt-0 mb-4 icon-position"
+    onChange={this.handleChange}
+/>
+{errors.has('password_confirmation') &&
+<Header id='errorPassConfirmMsg' size='tiny' className='custom-error' color=''>
+    {errors.first('password_confirmation')}
+</Header>}*/

@@ -43,12 +43,34 @@ class Project extends React.Component {
         const isAgile = document.getElementById('invalidCheck').required;
         item.push({name, isAgile, image});
         this.setState({itemArray: item});
-        axios.post('/createProject', {
+        axios.post('http://debecaan18/createProject', {
             name: this.name,
             is_agile: this.isAgile
-        })
-        this.toggle();
+        }).then(res => {
+            //handle success
+            console.log(res);
+        }).catch(error => {
+            // handle error
+            console.log(error);
+        }).then(() => {
+            // always executed
+            this.toggle();
+        });
+
     };
+
+    componentDidMount() {
+        axios.get('http://debecaan18/showProject')
+            .then(res => {
+                const name = res.data.name;
+                this.setState({name})
+                }
+            )
+            .catch(error => {
+                console.log(error);
+            })
+
+    }
 
     handleGantt(event) {
         event.preventDefault();

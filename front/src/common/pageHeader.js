@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+/*import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
     Header,
@@ -6,9 +6,6 @@ import {
 } from 'semantic-ui-react';
 
 class PageHeader extends Component {
-    constructor(props) {
-        super(props);
-    }
 
     render() {
         return (
@@ -22,4 +19,4 @@ class PageHeader extends Component {
 PageHeader.propTypes = {
     heading : PropTypes.string.isRequired
 };
-export default PageHeader;
+export default PageHeader;*/

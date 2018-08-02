@@ -12,7 +12,6 @@ import {Link, Redirect} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import ReeValidate from 'ree-validate';
 import AuthService from '../../services';
-import PageHeader from '../../common/pageHeader';
 
 class Page extends Component {
     constructor(props) {

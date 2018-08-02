@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+/*import React, { Component } from 'react';
 import {
     Grid,
     Header,
@@ -27,4 +27,4 @@ class Footer extends Component {
     }
 }
 
-export default Footer;
+export default Footer;*/
