@@ -37,7 +37,7 @@ class Project extends React.Component {
 
     toggle2() {
         this.setState({
-            modal2: !this.state.modal2
+            modal2: !this.state.modal2,
         });
     }
 
@@ -180,7 +180,7 @@ class Project extends React.Component {
                                 <CardImage id={index} className="img-project img" width="100%" src={image} waves />
                                 <CardBody>
                                     <CardTitle>{item.name}</CardTitle>
-                                    <Button className="project-btn" onClick={this.toggle2} >Projet</Button>
+                                    <Button className="project-btn" id={this.state.project_id = item.id} onClick={this.toggle2} >Projet</Button>
                                 </CardBody>
                             </Card>
                         )
