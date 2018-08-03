@@ -163,7 +163,7 @@ export default class Toolbar extends Component {
             <div>
                 <Responsive as={Segment} inverted minWidth={769}>
                     <div className="gantt-top-panel">
-                        <div className="gantt-top-panel__title"> <h1>Project Title</h1></div>
+                        <div className="gantt-top-panel__title"> <h1>Tracker</h1></div>
                     </div>
                     <nav className="navbar navbar-expand-lg">
                         <Container className="gantt-controls">

@@ -41,8 +41,6 @@ class Project extends React.Component {
         });
     }
 
-
-
     createProject(event) {
         event.preventDefault();
         const item = this.state.nameArray;
@@ -53,47 +51,35 @@ class Project extends React.Component {
         this.setState({nameArray: item});
 
         axios.get('http://debecaan18/showUser')
-    };
-
-    componentDidMount() {
-        axios.get('http://debecaan18/getProject')
             .then(res => {
-                const user_id = res.data.user[0].id;
-                axios.post('http://debecaan18/createProject', {
-                    name: name,
-                    is_agile: isAgile,
-                    user_id: user_id
-                }).then(res => {
-                    //handle success
-                    console.log(res);
-                }).catch(error => {
-                    // handle error
-                    console.log(error);
-                }).then(() => {
-                    // always executed
-                    this.toggle();
-                });
-            }
-        );
-                const nameArray = res.data;
-                this.setState({nameArray});
+                    const user_id = res.data.user[0].id;
+                    axios.post('http://debecaan18/createProject', {
+                        name: name,
+                        is_agile: isAgile,
+                        user_id: user_id
+                    }).then(res => {
+                        //handle success
+                        console.log(res);
+                    }).catch(error => {
+                        // handle error
+                        console.log(error);
+                    }).then(() => {
+                        // always executed
+                        this.toggle();
+                    });
                 }
-            )
-            .catch(error => {
-                console.log(error);
-            })
-
+            );
     }
 
     componentDidMount() {
         axios.get('http://debecaan18/getProject')
-        .then(res => {
-            const nameArray = res.data;
-            this.setState ({nameArray});
-        })
-        .catch(error => {
-            console.log(error);
-        })
+            .then(res => {
+                const nameArray = res.data;
+                this.setState ({nameArray});
+            })
+            .catch(error => {
+                console.log(error);
+            })
     };
 
     handleGantt(event) {
