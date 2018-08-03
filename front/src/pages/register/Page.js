@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Dimmer, Form, Grid, Header, Loader, Message, Segment} from 'semantic-ui-react';
-import { Button, Input } from 'mdbreact';
+import { Button, Input, Modal, ModalHeader, Container } from 'mdbreact';
 import {Link, Redirect} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import ReeValidate from 'ree-validate';
@@ -35,6 +35,13 @@ class Page extends Component {
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.toggle = this.toggle.bind(this);
+    }
+
+    toggle() {
+        this.setState({
+            modal: !this.state.modal
+        });
     }
 
     handleChange(event) {
@@ -76,7 +83,7 @@ class Page extends Component {
                     isLoading: false
                 });
                 this.setState({
-                    isSuccess: true,
+                    isSuccess: true
                 });
             })
             .catch(({error, statusCode}) => {
@@ -125,11 +132,21 @@ class Page extends Component {
                                 {this.state.responseError.text}
                             </Message.Content>
                         </Message>}
+
                         {this.state.isSuccess && <Message positive>
-                            <Message.Content>
-                                Registered Successfully ! <Link to='/login' replace>Login</Link> here
-                            </Message.Content>
+
                         </Message>}
+                        <Container>
+                            <Modal isOpen={this.state.modal} toggle={this.toggle} side position='top-right'>
+                                <ModalHeader toggle={this.toggle}>
+                                    Registered Successfully ! <Link to='/login' replace>Login</Link> here
+                                </ModalHeader>
+                                {/* <Message.Content>
+                                    Registered Successfully ! <Link to='/login' replace>Login</Link> here
+                                </Message.Content> */}
+                            </Modal>
+                        </Container>
+
                         <Form size='large'>
                             <Segment stacked>
                                 <Input
@@ -141,7 +158,7 @@ class Page extends Component {
                                     onChange={this.handleChange}
                                 />
                                 {errors.has('name') &&
-                                <Header id='errorNameMsg' size='tiny' className='custom-error' color=''>
+                                <Header id='errorNameMsg' size='tiny' className='custom-error'>
                                     {errors.first('name')}
                                 </Header>}
 
@@ -154,7 +171,7 @@ class Page extends Component {
                                     onChange={this.handleChange}
                                 />
                                 {errors.has('surname') &&
-                                <Header id='errorSurnameMsg' size='tiny' className='custom-error' color=''>
+                                <Header id='errorSurnameMsg' size='tiny' className='custom-error'>
                                     {errors.first('surname')}
                                 </Header>}
 
@@ -167,7 +184,7 @@ class Page extends Component {
                                     onChange={this.handleChange}
                                 />
                                 {errors.has('email') &&
-                                <Header id='errorMailMsg' size='tiny' className='custom-error' color=''>
+                                <Header id='errorMailMsg' size='tiny' className='custom-error'>
                                     {errors.first('email')}
                                 </Header>}
 
@@ -181,11 +198,25 @@ class Page extends Component {
                                     onChange={this.handleChange}
                                 />
                                 {errors.has('password') &&
-                                <Header id='errorPassMsg' size='tiny' className='custom-error' color=''>
+                                <Header id='errorPassMsg' size='tiny' className='custom-error'>
                                     {errors.first('password')}
                                 </Header>}
 
-                                <Button id='register-page-button' color='elegant' size='md' style={style} onClick={this.handleSubmit}>Register</Button>
+                                {/* <Input
+                                    icon='refresh'
+                                    iconposition='left'
+                                    name="password"
+                                    label='Confirm your password'
+                                    type='password'
+                                    containerClass="active-cyan-2 mt-0 mb-4 icon-position"
+                                    onChange={this.handleChange}
+                                />
+                                {errors.has('password_confirmation') &&
+                                <Header id='errorPassConfirmMsg' size='tiny' className='custom-error'>
+                                    {errors.first('password_confirmation')}
+                                </Header>} */}
+
+                                <Button id="register-page-button" color="elegant" size="md" style={style} onClick={this.handleSubmit}>Register</Button>
 
                             </Segment>
                         </Form>
@@ -211,17 +242,3 @@ Page.propTypes = {
 };
 
 export default Page;
-
-/*<Input
-    icon='refresh'
-    iconposition='left'
-    name="password"
-    label='Confirm your password'
-    type='password'
-    containerClass="active-cyan-2 mt-0 mb-4 icon-position"
-    onChange={this.handleChange}
-/>
-{errors.has('password_confirmation') &&
-<Header id='errorPassConfirmMsg' size='tiny' className='custom-error' color=''>
-    {errors.first('password_confirmation')}
-</Header>}*/

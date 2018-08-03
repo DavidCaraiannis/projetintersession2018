@@ -47,29 +47,34 @@ class Project extends React.Component {
         event.preventDefault();
         const item = this.state.nameArray;
         const image = this.randomImage();
-        const name = document.getElementById('title').defaultValue;
-        const isAgile = document.getElementById('invalidCheck').required;
+        var name = document.getElementById('title').defaultValue;
+        var isAgile = document.getElementById('invalidCheck').required;
         item.push({name, isAgile, image});
         this.setState({nameArray: item});
-        axios.post('http://debecaan18/createProject', {
-            name: this.name,
-            is_agile: this.isAgile
-        }).then(res => {
-            //handle success
-            console.log(res);
-        }).catch(error => {
-            // handle error
-            console.log(error);
-        }).then(() => {
-            // always executed
-            this.toggle();
-        });
 
+        axios.get('http://debecaan18/showUser')
     };
 
     componentDidMount() {
         axios.get('http://debecaan18/getProject')
             .then(res => {
+                const user_id = res.data.user[0].id;
+                axios.post('http://debecaan18/createProject', {
+                    name: name,
+                    is_agile: isAgile,
+                    user_id: user_id
+                }).then(res => {
+                    //handle success
+                    console.log(res);
+                }).catch(error => {
+                    // handle error
+                    console.log(error);
+                }).then(() => {
+                    // always executed
+                    this.toggle();
+                });
+            }
+        );
                 const nameArray = res.data;
                 this.setState({nameArray});
                 }
@@ -79,6 +84,17 @@ class Project extends React.Component {
             })
 
     }
+
+    componentDidMount() {
+        axios.get('http://debecaan18/getProject')
+        .then(res => {
+            const nameArray = res.data;
+            this.setState ({nameArray});
+        })
+        .catch(error => {
+            console.log(error);
+        })
+    };
 
     handleGantt(event) {
         event.preventDefault();
@@ -183,6 +199,17 @@ class Project extends React.Component {
                             </Card>
                         )
                     })}
+                    {/* {this.state.itemArray.map((item, index) => {
+                        return (
+                            <Card className="card-project">
+                                <CardImage id={index} className="img-project img" width="100%" src={item.image} waves />
+                                <CardBody>
+                                    <CardTitle>{item.name}</CardTitle>
+                                    <Button id={item.id} className="project-btn" onClick={this.handleGantt} href="/gantt">Projet</Button>
+                                </CardBody>
+                            </Card>
+                        )
+                    })} */}
                 </div>
             </div>
         )

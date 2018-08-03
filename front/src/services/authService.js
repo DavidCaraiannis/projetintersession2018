@@ -67,7 +67,7 @@ export function updatePassword(credentials) {
                     return resolve(res);
                 })
                 .catch(err => {
-                    const statusCode = err.response.status;
+                    const statusCode = err.res.status;
                     const data = {
                         error: null,
                         statusCode,
@@ -75,7 +75,7 @@ export function updatePassword(credentials) {
                     if (statusCode === 401 || statusCode === 422) {
                         // status 401 means unauthorized
                         // status 422 means unprocessable entity
-                        data.error = err.response.data.message;
+                        data.error = err.res.data.message;
                     }
                     return reject(data);
                 })

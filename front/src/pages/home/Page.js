@@ -33,7 +33,7 @@ class Page extends Component {
                         <Header id='subtitle-home' as="h4" style={{color: '#005d7bc7'}}>
                         The <span>Ganttesque</span> Management
                         </Header>
-                        <p style={{color: 'gray'}} >Since 2018</p>
+                        <p style={{color: 'gray'}} >Since 2019</p>
                     </Container>
                 </div>
             </div>
