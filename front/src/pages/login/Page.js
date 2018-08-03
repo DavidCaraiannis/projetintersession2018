@@ -137,7 +137,7 @@ class Page extends Component {
                                     id='errorMailMsg'
                                     size='tiny'
                                     className='custom-error'
-                                    color=''>
+                                    color='blue'>
                                     {errors.first('email')}
                                 </Header>}
 
@@ -157,7 +157,7 @@ class Page extends Component {
                                     id='errorPassMsg'
                                     size='tiny'
                                     className='custom-error'
-                                    color=''>
+                                    color='blue'>
                                     {errors.first('password')}
                                 </Header>}
 

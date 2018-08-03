@@ -185,13 +185,13 @@ export default class Toolbar extends Component {
                             </DropdownMenu>
                             </Dropdown>
                             <Menu.Item className="gantt-menu-item gantt-menu-item-right" data-action="zoomIn">
-                                <Button onClick={this.handleZoomIn}>Zoom In</Button>
+                                <Button disabled onClick={this.handleZoomIn}>Zoom In</Button>
                             </Menu.Item>
                             <Menu.Item className="gantt-menu-item gantt-menu-item-right" data-action="zoomOut">
-                                <Button onClick={this.handleZoomOut}>Zoom Out</Button>
+                                <Button disabled onClick={this.handleZoomOut}>Zoom Out</Button>
                             </Menu.Item>
                             <Menu.Item className="gantt-menu-item gantt-menu-item-right gantt-menu-item-last" data-action="zoomToFit">
-                                <Button onClick={this.handleZoomToFit}>Zoom to Fit</Button>
+                                <Button disabled onClick={this.handleZoomToFit}>Zoom to Fit</Button>
                             </Menu.Item>
                             <Menu.Item className="gantt-menu-item gantt-menu-item-right gantt-menu-item-last" id="fullscreen_button">
                                 <Button onClick={this.handleFullscreen}>Fullscreen</Button>
@@ -204,37 +204,3 @@ export default class Toolbar extends Component {
         )
     }
 }
-
-
-/*
-* <nav>
-            <div>
-                <div className="zoom-bar">
-                    <b>Zooming: </b>
-                    { zoomRadios }
-                </div>
-            </div>
-        </nav>
-*/
-
-/*
-*
-*let zoomRadios = ['Hours', 'Days', 'Months'].map((value) => {
-            let isActive = this.props.zoom === value;
-
-            return (
-                <div>
-                    <label key={value} className={`radio-label ${isActive ? 'radio-label-active': ''}`}>
-                        <input type='radio'
-                               checked={isActive}
-                               onChange={this.handleZoomChange}
-                               value={value}/>
-                        {value}
-                    </label>
-                </div>
-
-
-
-            )
-        });
-*/

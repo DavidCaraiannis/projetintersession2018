@@ -6,7 +6,6 @@ import {
     CardBody,
     CardImage,
     CardTitle,
-    CardText,
     Modal,
     ModalBody,
     ModalHeader,
@@ -18,11 +17,14 @@ class Project extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            itemArray: [],
+            name: '',
+            nameArray: [],
+            project_id: ''
         };
         this.createProject = this.createProject.bind(this);
         this.randomImage = this.randomImage.bind(this);
         this.toggle = this.toggle.bind(this);
+        this.toggle2 = this.toggle2.bind(this);
         this.handleGantt = this.handleGantt.bind(this);
 
     }
@@ -33,16 +35,22 @@ class Project extends React.Component {
         });
     }
 
+    toggle2() {
+        this.setState({
+            modal2: !this.state.modal2
+        });
+    }
+
 
 
     createProject(event) {
         event.preventDefault();
-        const item = this.state.itemArray;
+        const item = this.state.nameArray;
         const image = this.randomImage();
         const name = document.getElementById('title').defaultValue;
         const isAgile = document.getElementById('invalidCheck').required;
         item.push({name, isAgile, image});
-        this.setState({itemArray: item});
+        this.setState({nameArray: item});
         axios.post('http://debecaan18/createProject', {
             name: this.name,
             is_agile: this.isAgile
@@ -60,10 +68,10 @@ class Project extends React.Component {
     };
 
     componentDidMount() {
-        axios.get('http://debecaan18/showProject')
+        axios.get('http://debecaan18/getProject')
             .then(res => {
-                const name = res.data.name;
-                this.setState({name})
+                const nameArray = res.data;
+                this.setState({nameArray});
                 }
             )
             .catch(error => {
@@ -74,20 +82,28 @@ class Project extends React.Component {
 
     handleGantt(event) {
         event.preventDefault();
-        debugger;
-        axios.get('/readProject')
+        const label = document.getElementById('label').defaultValue;
+        //const project_id = document.getElementsByClassName('saveGantt').defaultValue;
+        /*axios.get('http://debecaan18/showUser')
             .then(res => {
-                const project_id = res.data.id;
-                this.setState({project_id})
-            }
-        );
-        axios.post('/createGantt', {
-            project_id: this.project_id,
+                const user_id = res.data.user[0].id;
+                axios.get('http://debecaan18/readProject/' + user_id)
+                    .then(res => {
+                            debugger;
+                            project_id = res.data[1].id;
+                            this.setState({project_id})
+                        }
+                    );
+            });*/
+        axios.post('http://debecaan18/createGantt', {
+            //project_id: project_id,
+            label: label,
         })
             .then(res => {
                 console.log(res);
             })
             .catch()
+
     }
 
 
@@ -143,16 +159,26 @@ class Project extends React.Component {
                             <Button color='primary' onClick={this.createProject}>Save</Button>
                         </ModalFooter>
                     </Modal>
+                    <Modal isOpen={this.state.modal2} toggle={this.toggle2}>
+                    <ModalHeader toggle={this.toggle2}>
+                        <Input name="label" id='label' label='Enter your title gantt'/>
+                    </ModalHeader>
+                    <ModalFooter className="saveGantt">
+                        <Button  color='secondary' onClick={this.toggle2}>Close</Button>{' '}
+                        <Button  color='primary' /*onClick={this.handleGantt}*/ href="/gantt">Save</Button>
+                    </ModalFooter>
+                </Modal>
                 </Container>
 
                 <div className="project-be-create">
-                    {this.state.itemArray.map((item, index) => {
+                    {this.state.nameArray.map((item, index) => {
+                        const image = this.randomImage();
                         return (
-                            <Card className="card-project">
-                                <CardImage id={index} className="img-project img" width="100%" src={item.image} waves />
+                            <Card id={item.id} className="card-project">
+                                <CardImage id={index} className="img-project img" width="100%" src={image} waves />
                                 <CardBody>
                                     <CardTitle>{item.name}</CardTitle>
-                                    <Button className="project-btn" onClick={this.handleGantt} href="/gantt">Projet</Button>
+                                    <Button className="project-btn" onClick={this.toggle2} >Projet</Button>
                                 </CardBody>
                             </Card>
                         )

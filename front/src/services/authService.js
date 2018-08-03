@@ -1,19 +1,16 @@
-import Http from '../Http';
+//import Http from '../Http';
 import axios from 'axios';
 import * as action from '../store/actions';
 
 export function login(credentials) {
     return dispatch => (
         new Promise((resolve, reject) => {
-            debugger;
             axios.post('http://debecaan18/login', credentials)
                 .then(res => {
-                    debugger;
                     dispatch(action.authLogin(res.data));
                     return resolve();
                 })
                 .catch(err => {
-                    debugger;
                     const statusCode = err.response.status;
                     const data = {
                         error: null,
@@ -89,14 +86,11 @@ export function updatePassword(credentials) {
 export function register(credentials) {
     return dispatch => (
         new Promise((resolve, reject) => {
-            debugger;
             axios.post('http://debecaan18/createUser', credentials)
                 .then(res => {
-                    debugger;
                     return resolve(res.data);
                 })
                 .catch(err => {
-                    debugger;
                     const statusCode = err.response.status;
                     const data = {
                         error: null,
